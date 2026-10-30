@@ -75,7 +75,7 @@ export const HomePage: React.FC<Props> = ({ onNavigate }) => {
       
       {/* HERO SECTION WITH DYNAMIC BACKGROUND CAROUSEL (100vh IMMERSIVE) */}
       <section 
-        className="relative min-h-[calc(100vh-4.25rem)] lg:min-h-screen flex items-center py-12 sm:py-16 overflow-hidden bg-ivory-50 border-b border-stone-200/80"
+        className="relative min-h-[calc(100vh-4.25rem)] lg:min-h-[calc(100vh-4.25rem)] lg:max-h-[1020px] flex items-center py-8 lg:py-6 overflow-hidden bg-ivory-50 border-b border-stone-200/80"
         onMouseEnter={() => setIsAutoPlaying(false)}
         onMouseLeave={() => setIsAutoPlaying(true)}
       >
@@ -99,56 +99,56 @@ export const HomePage: React.FC<Props> = ({ onNavigate }) => {
           <div className="absolute inset-0 bg-gradient-to-r from-white/60 via-transparent to-white/40 pointer-events-none" />
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-8 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 w-full relative z-10">
           
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 xl:gap-14 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 xl:gap-12 items-center">
             
             {/* Left Content Column with Bold High-Contrast Typography */}
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] }}
-              className="lg:col-span-7 space-y-6"
+              className="lg:col-span-7 space-y-4 lg:space-y-4 xl:space-y-5"
             >
               
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/95 border border-stone-300 text-slate-950 text-xs font-mono font-extrabold max-w-full shadow-xs">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-white/95 border border-stone-300 text-slate-950 text-xs font-mono font-extrabold max-w-full shadow-2xs">
                 <span className="truncate">HYDERABAD & TELANGANA TIER-1 SOLAR EPC</span>
               </div>
 
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-950 tracking-tight leading-[1.08] text-balance drop-shadow-[0_2px_4px_rgba(255,255,255,0.9)]">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black text-slate-950 tracking-tight leading-[1.08] text-balance drop-shadow-[0_2px_4px_rgba(255,255,255,0.9)]">
                 Energy, engineered <br className="hidden sm:inline" />
                 <span className="text-solar-600 drop-shadow-[0_2px_4px_rgba(255,255,255,0.9)]">
                   beautifully.
                 </span>
               </h1>
 
-              <p className="text-slate-950 text-base sm:text-lg leading-relaxed max-w-xl text-pretty font-bold drop-shadow-[0_1px_2px_rgba(255,255,255,0.95)]">
+              <p className="text-slate-950 text-sm sm:text-base leading-relaxed max-w-xl text-pretty font-bold drop-shadow-[0_1px_2px_rgba(255,255,255,0.95)]">
                 Turnkey rooftop solar EPC for discerning residences, gated societies, and commercial enterprises across Telangana. Slash power bills by up to 90% with Tier-1 TOPCon photovoltaics and guaranteed DISCOM net-metering.
               </p>
 
               {/* Badges */}
-              <div className="flex flex-wrap items-center gap-2.5 pt-1 text-xs font-mono text-slate-950 font-bold">
-                <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/95 border border-stone-300 shadow-xs">
-                  <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
+              <div className="flex flex-wrap items-center gap-2 pt-0.5 text-xs font-mono text-slate-950 font-bold">
+                <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white/95 border border-stone-300 shadow-2xs">
+                  <ShieldCheck className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
                   <span>₹78,000 PM Surya Ghar Subsidy</span>
                 </div>
-                <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/95 border border-stone-300 shadow-xs">
-                  <Clock className="w-4 h-4 text-solar-600 shrink-0" />
+                <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white/95 border border-stone-300 shadow-2xs">
+                  <Clock className="w-3.5 h-3.5 text-solar-600 shrink-0" />
                   <span>30-Year Linear Warranty</span>
                 </div>
-                <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/95 border border-stone-300 shadow-xs">
-                  <Activity className="w-4 h-4 text-indigo-600 shrink-0" />
+                <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white/95 border border-stone-300 shadow-2xs">
+                  <Activity className="w-3.5 h-3.5 text-indigo-600 shrink-0" />
                   <span>5-Year Comprehensive O&M</span>
                 </div>
               </div>
 
               {/* CTAs */}
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-3">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-1">
                 <motion.a
                   whileHover={{ scale: 1.02, y: -1 }}
                   whileTap={{ scale: 0.98 }}
                   href="#proposal-studio"
-                  className="btn-amber text-sm py-3.5 px-6 font-bold flex items-center justify-center gap-2 shadow-amber-glow"
+                  className="btn-amber text-xs sm:text-sm py-3 px-5 sm:px-6 font-bold flex items-center justify-center gap-2 shadow-amber-glow"
                 >
                   <span>Instant Solar Proposal</span>
                   <ArrowRight className="w-4 h-4" />
@@ -158,31 +158,31 @@ export const HomePage: React.FC<Props> = ({ onNavigate }) => {
                   whileHover={{ scale: 1.02, y: -1 }}
                   whileTap={{ scale: 0.98 }}
                   href="#consultation-form"
-                  className="btn-primary text-sm py-3.5 px-6 font-semibold flex items-center justify-center gap-2"
+                  className="btn-primary text-xs sm:text-sm py-3 px-5 sm:px-6 font-semibold flex items-center justify-center gap-2"
                 >
                   <span>Book Free Roof Survey</span>
                 </motion.a>
               </div>
 
               {/* Trust Metric Counters */}
-              <div className="pt-6 border-t border-stone-200/90 grid grid-cols-3 gap-4">
+              <div className="pt-4 border-t border-stone-200/90 grid grid-cols-3 gap-3">
                 <div>
-                  <span className="text-2xl sm:text-3xl font-extrabold text-slate-900 font-mono block tabular-nums">
+                  <span className="text-xl sm:text-2xl xl:text-3xl font-extrabold text-slate-900 font-mono block tabular-nums">
                     500+
                   </span>
-                  <span className="text-xs text-slate-500 font-medium">Homes & Facilities Powered</span>
+                  <span className="text-[11px] sm:text-xs text-slate-600 font-medium">Homes & Facilities Powered</span>
                 </div>
                 <div>
-                  <span className="text-2xl sm:text-3xl font-extrabold text-emerald-700 font-mono block tabular-nums">
+                  <span className="text-xl sm:text-2xl xl:text-3xl font-extrabold text-emerald-700 font-mono block tabular-nums">
                     ₹78k
                   </span>
-                  <span className="text-xs text-slate-500 font-medium">Max Central Subsidy</span>
+                  <span className="text-[11px] sm:text-xs text-slate-600 font-medium">Max Central Subsidy</span>
                 </div>
                 <div>
-                  <span className="text-2xl sm:text-3xl font-extrabold text-solar-600 font-mono block tabular-nums">
+                  <span className="text-xl sm:text-2xl xl:text-3xl font-extrabold text-solar-600 font-mono block tabular-nums">
                     100%
                   </span>
-                  <span className="text-xs text-slate-500 font-medium">DISCOM Net-Metered</span>
+                  <span className="text-[11px] sm:text-xs text-slate-600 font-medium">DISCOM Net-Metered</span>
                 </div>
               </div>
 
@@ -193,11 +193,11 @@ export const HomePage: React.FC<Props> = ({ onNavigate }) => {
               initial={{ opacity: 0, scale: 0.96 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.65, delay: 0.15, ease: [0.21, 0.47, 0.32, 0.98] }}
-              className="lg:col-span-5 space-y-3"
+              className="lg:col-span-5 space-y-2.5 w-full min-w-0"
             >
               
               {/* Media Display Container with smooth fade transitions */}
-              <div className="relative rounded-3xl overflow-hidden border border-stone-300 shadow-2xl bg-slate-950 h-84 sm:h-96 group">
+              <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden border border-stone-300 shadow-xl bg-slate-950 h-64 sm:h-72 lg:h-[260px] xl:h-[300px] group">
                 <AnimatePresence mode="wait">
                   <motion.img
                     key={activeHeroTab}
@@ -214,39 +214,39 @@ export const HomePage: React.FC<Props> = ({ onNavigate }) => {
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/25 to-transparent pointer-events-none" />
                 
                 {/* Floating Telemetry Tag */}
-                <div className="absolute top-4 left-4 bg-slate-900/90 backdrop-blur-md text-white text-xs font-mono px-2.5 py-1 rounded-md border border-slate-700/80 flex items-center gap-2 shadow-sm font-medium z-10">
+                <div className="absolute top-3 left-3 bg-slate-900/90 backdrop-blur-md text-white text-[11px] font-mono px-2 py-0.5 rounded-md border border-slate-700/80 flex items-center gap-1.5 shadow-xs font-medium z-10">
                   <span className="text-emerald-400 font-bold">/</span>
                   <span>{heroShowcases[activeHeroTab].tag}</span>
                 </div>
 
                 {/* Carousel Controls Overlay (Prev, Play/Pause, Next) */}
-                <div className="absolute top-4 right-4 flex items-center gap-1.5 bg-slate-900/80 backdrop-blur-md p-1 rounded-xl border border-slate-700/80 text-white z-10">
+                <div className="absolute top-3 right-3 flex items-center gap-1 bg-slate-900/80 backdrop-blur-md p-1 rounded-lg border border-slate-700/80 text-white z-10">
                   <button
                     onClick={handlePrev}
                     aria-label="Previous showcase"
-                    className="p-1 rounded-lg hover:bg-slate-800 transition-colors"
+                    className="p-1 rounded hover:bg-slate-800 transition-colors"
                   >
                     <ChevronLeft className="w-3.5 h-3.5" />
                   </button>
                   <button
                     onClick={() => setIsAutoPlaying(!isAutoPlaying)}
                     aria-label={isAutoPlaying ? "Pause carousel" : "Play carousel"}
-                    className="p-1 rounded-lg hover:bg-slate-800 transition-colors text-solar-400"
+                    className="p-1 rounded hover:bg-slate-800 transition-colors text-solar-400"
                   >
                     {isAutoPlaying ? <Pause className="w-3 h-3" /> : <Play className="w-3 h-3" />}
                   </button>
                   <button
                     onClick={handleNext}
                     aria-label="Next showcase"
-                    className="p-1 rounded-lg hover:bg-slate-800 transition-colors"
+                    className="p-1 rounded hover:bg-slate-800 transition-colors"
                   >
                     <ChevronRight className="w-3.5 h-3.5" />
                   </button>
                 </div>
 
                 {/* Bottom Overlay Card (Clean, crisp, readable light-card) */}
-                <div className="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-md rounded-2xl p-4 border border-white/60 shadow-xl text-slate-900">
-                  <div className="flex items-center justify-between text-xs">
+                <div className="absolute bottom-3 left-3 right-3 bg-white/95 backdrop-blur-md rounded-xl p-3 border border-white/60 shadow-lg text-slate-900">
+                  <div className="flex items-center justify-between text-[11px]">
                     <span className="font-mono text-slate-500 uppercase tracking-wider font-semibold">
                       {heroShowcases[activeHeroTab].title}
                     </span>
@@ -254,14 +254,14 @@ export const HomePage: React.FC<Props> = ({ onNavigate }) => {
                       {heroShowcases[activeHeroTab].badge}
                     </span>
                   </div>
-                  <div className="mt-1 text-xs sm:text-sm font-semibold text-slate-900 line-clamp-2">
+                  <div className="mt-0.5 text-xs sm:text-sm font-semibold text-slate-900 line-clamp-1">
                     {heroShowcases[activeHeroTab].highlight}
                   </div>
                 </div>
               </div>
 
               {/* Interactive Showcase Switcher Tabs */}
-              <div role="tablist" aria-label="Hero architectural showcases" className="grid grid-cols-4 gap-2 pt-1">
+              <div role="tablist" aria-label="Hero architectural showcases" className="grid grid-cols-4 gap-1.5 pt-0.5 w-full">
                 {heroShowcases.map((item, idx) => (
                   <button
                     key={idx}
@@ -269,14 +269,14 @@ export const HomePage: React.FC<Props> = ({ onNavigate }) => {
                     role="tab"
                     aria-selected={activeHeroTab === idx}
                     onClick={() => setActiveHeroTab(idx)}
-                    className={`relative p-2 rounded-xl text-left border transition-all text-xs ${
+                    className={`relative p-1.5 rounded-xl text-left border transition-all text-xs min-w-0 ${
                       activeHeroTab === idx
-                        ? 'bg-white border-solar-500 shadow-xs ring-1 ring-solar-500/40 text-slate-950'
-                        : 'bg-stone-50/80 hover:bg-white border-stone-200/80 text-slate-500'
+                        ? 'bg-white border-solar-500 shadow-xs ring-1 ring-solar-500/40 text-slate-950 font-bold'
+                        : 'bg-white/80 hover:bg-white border-stone-200/80 text-slate-500'
                     }`}
                   >
-                    <span className="font-mono text-[10px] text-solar-700 font-bold block">0{idx + 1}</span>
-                    <span className="font-semibold text-[11px] block truncate leading-tight mt-0.5">
+                    <span className="font-mono text-[9px] text-solar-700 font-bold block">0{idx + 1}</span>
+                    <span className="font-semibold text-[10px] sm:text-[11px] block truncate leading-tight mt-0.5">
                       {item.title.split(' ')[0]}
                     </span>
                   </button>
@@ -284,25 +284,25 @@ export const HomePage: React.FC<Props> = ({ onNavigate }) => {
               </div>
 
               {/* Prominent Clean Energy Innovation Card with Iconic Photovoltaic Bulb */}
-              <div className="bg-gradient-to-r from-white via-amber-50/30 to-white rounded-2xl p-4 border border-solar-200/90 shadow-md flex items-center justify-between gap-4">
-                <div className="flex items-center gap-3.5">
+              <div className="w-full bg-gradient-to-r from-white via-amber-50/40 to-white rounded-2xl p-3 sm:p-3.5 border border-solar-200/90 shadow-sm flex items-center justify-between gap-3 overflow-hidden">
+                <div className="flex items-center gap-3 min-w-0 flex-1">
                   <div className="relative shrink-0">
-                    <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-amber-100/80 via-white to-solar-100/60 border border-solar-300 p-1.5 flex items-center justify-center shadow-md">
+                    <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-amber-100/80 via-white to-solar-100/60 border border-solar-300 p-1 flex items-center justify-center shadow-xs">
                       <motion.img
                         src="/assets/solar_bulb_innovation.png"
                         alt="Meghvi Solar Clean Energy Photovoltaic Innovation Bulb"
-                        className="w-full h-full object-contain filter drop-shadow-sm"
+                        className="w-full h-full object-contain filter drop-shadow-xs"
                         animate={{ scale: [1, 1.05, 1], rotate: [0, 2, -2, 0] }}
                         transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
                       />
                     </div>
                   </div>
-                  <div className="min-w-0">
+                  <div className="min-w-0 flex-1">
                     <div className="flex items-center gap-1.5 mb-0.5">
-                      <span className="text-[10px] font-mono uppercase tracking-wider text-solar-700 font-bold bg-solar-50 px-2 py-0.5 rounded border border-solar-200">
+                      <span className="text-[9px] font-mono uppercase tracking-wider text-solar-700 font-bold bg-solar-50 px-1.5 py-0.5 rounded border border-solar-200 shrink-0">
                         Patented Clean Tech
                       </span>
-                      <span className="text-[10px] font-mono text-emerald-700 font-semibold">
+                      <span className="text-[9px] font-mono text-emerald-700 font-semibold truncate">
                         Zero Carbon
                       </span>
                     </div>
@@ -316,7 +316,7 @@ export const HomePage: React.FC<Props> = ({ onNavigate }) => {
                 </div>
                 <a
                   href="#consultation-form"
-                  className="btn-amber text-xs py-2 px-3.5 rounded-xl font-bold shrink-0 flex items-center gap-1"
+                  className="btn-amber text-xs py-2 px-3 rounded-xl font-bold shrink-0 inline-flex items-center gap-1 whitespace-nowrap shadow-xs"
                 >
                   <span>Explore</span>
                   <ChevronRight className="w-3.5 h-3.5" />
@@ -613,11 +613,11 @@ export const HomePage: React.FC<Props> = ({ onNavigate }) => {
           <img
             src="/assets/commercial_industrial_solar_rooftop.jpg"
             alt="Photovoltaic Solar Panel Engineering Architecture"
-            className="w-full h-full object-cover object-center filter brightness-[0.18] contrast-125"
+            className="w-full h-full object-cover object-center filter brightness-[0.38] contrast-125 saturate-110"
             loading="lazy"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-slate-950/95 via-slate-950/85 to-slate-950/95" />
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-25" />
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-950/90 via-slate-950/80 to-slate-950/90" />
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,#38bdf8_1px,transparent_1px),linear-gradient(to_bottom,#38bdf8_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-15" />
         </div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-8 relative z-10">

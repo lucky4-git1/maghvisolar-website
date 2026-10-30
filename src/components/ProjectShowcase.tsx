@@ -151,10 +151,10 @@ export const ProjectShowcase: React.FC<Props> = ({
           <img
             src="/assets/commercial_industrial_solar_rooftop.jpg"
             alt="Solar PV Panels Background"
-            className="w-full h-full object-cover object-center filter brightness-[0.20] contrast-125"
+            className="w-full h-full object-cover object-center filter brightness-[0.42] contrast-125 saturate-110"
             loading="lazy"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/85 to-slate-950/80" />
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/85 via-slate-950/75 to-slate-900/80" />
         </div>
 
         <div className="relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 mb-6">

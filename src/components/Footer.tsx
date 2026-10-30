@@ -14,11 +14,11 @@ export const Footer: React.FC<Props> = ({ onNavigate }) => {
         <img
           src="/assets/commercial_industrial_solar_rooftop.jpg"
           alt="Photovoltaic Solar Panel Array Background"
-          className="w-full h-full object-cover object-center filter brightness-[0.22] contrast-125"
+          className="w-full h-full object-cover object-center filter brightness-[0.40] contrast-125 saturate-110"
           loading="lazy"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/95 via-slate-950/85 to-slate-950/98" />
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:3.5rem_3.5rem] opacity-20" />
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/90 via-slate-950/80 to-slate-950/95" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#38bdf8_1px,transparent_1px),linear-gradient(to_bottom,#38bdf8_1px,transparent_1px)] bg-[size:3.5rem_3.5rem] opacity-10" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-8">
