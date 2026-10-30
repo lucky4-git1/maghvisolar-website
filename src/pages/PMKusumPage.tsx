@@ -15,30 +15,30 @@ export const PMKusumPage: React.FC<Props> = ({ onNavigate }) => {
   return (
     <div className="space-y-0 overflow-x-hidden">
       
-      {/* Hero Header with PM-KUSUM Official Banner as Full-Bleed Section Background */}
-      <section className="relative bg-slate-950 text-white py-16 sm:py-24 border-b border-slate-800 overflow-hidden min-h-[580px] flex items-center">
-        {/* Full-bleed Optimized PM-KUSUM Scheme Banner Background */}
-        <div className="absolute inset-0 z-0">
+      {/* Hero Header with PM-KUSUM Official Banner & PM Modi Optimization */}
+      <section className="relative bg-slate-950 text-white py-16 sm:py-24 border-b border-slate-800 overflow-hidden min-h-[620px] flex items-center">
+        {/* Full-bleed PM-KUSUM Scheme Ambient Background with Right-Anchored Modi */}
+        <div className="absolute inset-0 z-0 overflow-hidden">
           <img
             src="/assets/Banner-1-1024x356.png"
             alt="Official PM-KUSUM Solar Scheme Banner with PM Narendra Modi"
-            className="w-full h-full object-cover object-center filter brightness-[0.92] contrast-105"
+            className="w-full h-full object-cover object-[right_center] filter brightness-[1.05] contrast-105 select-none"
           />
-          {/* Gentle, balanced translucent overlay ensuring all banner graphics and PM Modi remain visible */}
-          <div className="absolute inset-0 bg-slate-950/35" />
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/80 via-slate-950/40 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent" />
+          {/* Directional gradient protecting text on the left while leaving PM Modi 100% visible and un-dimmed on the right */}
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/85 via-45% to-slate-950/20" />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-slate-950/40" />
         </div>
         
-        <div className="max-w-7xl mx-auto px-4 sm:px-8 relative z-10 w-full">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 relative z-10 w-full py-4">
           
-          <div className="max-w-2xl">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             
+            {/* Left Column: Scheme Overview & Components */}
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] }}
-              className="space-y-5 p-6 sm:p-8 rounded-3xl backdrop-blur-md bg-slate-950/70 border border-white/15 shadow-2xl"
+              className="lg:col-span-7 space-y-5 p-6 sm:p-8 rounded-3xl backdrop-blur-md bg-slate-950/80 border border-white/15 shadow-2xl"
             >
               <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-solar-400 bg-slate-900/90 backdrop-blur-md px-3 py-1.5 rounded-md border border-solar-500/30 font-semibold shadow-lg">
                 <Sprout className="w-3.5 h-3.5 text-solar-400" />
@@ -88,6 +88,58 @@ export const PMKusumPage: React.FC<Props> = ({ onNavigate }) => {
                 >
                   Consult Farming Specialist
                 </motion.button>
+              </div>
+            </motion.div>
+
+            {/* Right Column: Prominent Uncropped Official MNRE Scheme Banner & PM Modi Spotlight */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.96 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.7, delay: 0.15 }}
+              className="lg:col-span-5"
+            >
+              <div className="rounded-3xl overflow-hidden border-2 border-amber-400/50 bg-slate-900/90 backdrop-blur-xl shadow-2xl p-4 sm:p-5 text-white space-y-4">
+                <div className="flex items-center justify-between text-xs border-b border-white/10 pb-3">
+                  <div className="flex items-center gap-2">
+                    <span className="w-2.5 h-2.5 rounded-full bg-amber-400 animate-pulse shrink-0" />
+                    <span className="font-mono text-amber-300 font-bold uppercase tracking-wider text-[11px]">
+                      Official MNRE Scheme
+                    </span>
+                  </div>
+                  <span className="font-mono text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 font-semibold">
+                    Up to 60% Subsidy
+                  </span>
+                </div>
+
+                {/* Uncropped High-Definition Official Banner */}
+                <div className="relative rounded-2xl overflow-hidden border border-amber-400/30 shadow-xl bg-amber-400 group">
+                  <img
+                    src="/assets/Banner-1-1024x356.png"
+                    alt="Official Government of India PM-KUSUM Banner with PM Narendra Modi and MNRE Emblem"
+                    className="w-full h-auto object-contain block group-hover:scale-102 transition-transform duration-500"
+                  />
+                </div>
+
+                {/* Scheme Highlights & Subsidy Assurances */}
+                <div className="space-y-2 pt-1 text-xs">
+                  <div className="flex items-center justify-between font-mono text-[11px] bg-slate-950/60 p-2.5 rounded-xl border border-white/10">
+                    <span className="text-slate-300">Central MNRE Subsidy</span>
+                    <span className="text-solar-400 font-bold">30% Direct</span>
+                  </div>
+                  <div className="flex items-center justify-between font-mono text-[11px] bg-slate-950/60 p-2.5 rounded-xl border border-white/10">
+                    <span className="text-slate-300">State Govt Grant</span>
+                    <span className="text-emerald-400 font-bold">30% Grant</span>
+                  </div>
+                  <div className="flex items-center justify-between font-mono text-[11px] bg-slate-950/60 p-2.5 rounded-xl border border-white/10">
+                    <span className="text-slate-300">Farmer Share</span>
+                    <span className="text-white font-bold">Only 10% – 40%</span>
+                  </div>
+                </div>
+
+                <div className="text-[11px] text-slate-300 leading-snug font-sans bg-amber-500/10 border border-amber-400/20 rounded-xl p-3 flex items-center gap-2">
+                  <ShieldCheck className="w-4 h-4 text-amber-400 shrink-0" />
+                  <span>Meghvi Solar handles 100% of the MNRE portal paperwork & sub-station feasibility.</span>
+                </div>
               </div>
             </motion.div>
 
