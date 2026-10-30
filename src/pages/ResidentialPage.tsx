@@ -116,8 +116,7 @@ export const ResidentialPage: React.FC<Props> = ({ onNavigate }) => {
               <div className="rounded-3xl overflow-hidden border border-white/20 bg-slate-900/90 shadow-2xl backdrop-blur-xl">
                 {/* Showcase Top Bar */}
                 <div className="px-5 py-3.5 bg-slate-950/80 border-b border-white/10 flex items-center justify-between gap-3 text-xs">
-                  <div className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
+                  <div className="flex items-center gap-1.5">
                     <span className="font-mono text-slate-200 font-semibold truncate">
                       Jubilee Hills, Hyderabad
                     </span>

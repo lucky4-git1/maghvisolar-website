@@ -296,7 +296,6 @@ export const HomePage: React.FC<Props> = ({ onNavigate }) => {
                         transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
                       />
                     </div>
-                    <span className="absolute -bottom-1 -right-1 w-3 h-3 bg-emerald-500 rounded-full border-2 border-white shadow-xs" />
                   </div>
                   <div className="min-w-0">
                     <div className="flex items-center gap-1.5 mb-0.5">

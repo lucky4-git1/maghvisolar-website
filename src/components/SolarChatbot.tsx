@@ -469,7 +469,6 @@ export const SolarChatbot: React.FC<Props> = ({ onNavigate }) => {
                   <div className="w-9 h-9 rounded-xl bg-solar-500/20 border border-solar-500/40 flex items-center justify-center text-solar-400">
                     <Bot className="w-4 h-4" />
                   </div>
-                  <span className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 bg-emerald-500 rounded-full border-2 border-slate-950" />
                 </div>
                 <div>
                   <div className="flex items-center gap-1.5">
@@ -740,10 +739,9 @@ export const SolarChatbot: React.FC<Props> = ({ onNavigate }) => {
 
               {/* Typing indicator */}
               {isTyping && (
-                <div className="flex items-center gap-1.5 bg-white border border-stone-200/90 rounded-2xl rounded-bl-xs px-3.5 py-2.5 w-18 shadow-2xs">
-                  <span className="w-1.5 h-1.5 bg-solar-500 rounded-full animate-bounce [animation-delay:-0.3s]" />
-                  <span className="w-1.5 h-1.5 bg-solar-500 rounded-full animate-bounce [animation-delay:-0.15s]" />
-                  <span className="w-1.5 h-1.5 bg-solar-500 rounded-full animate-bounce" />
+                <div className="flex items-center gap-2 bg-white border border-stone-200/90 rounded-2xl rounded-bl-xs px-3.5 py-2 shadow-2xs">
+                  <Loader2 className="w-3.5 h-3.5 animate-spin text-solar-500 shrink-0" />
+                  <span className="text-[11px] font-mono text-slate-500 font-medium">Assistant analyzing...</span>
                 </div>
               )}
 

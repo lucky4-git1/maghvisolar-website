@@ -101,7 +101,6 @@ export const PMKusumPage: React.FC<Props> = ({ onNavigate }) => {
               <div className="rounded-3xl overflow-hidden border-2 border-amber-400/50 bg-slate-900/90 backdrop-blur-xl shadow-2xl p-4 sm:p-5 text-white space-y-4">
                 <div className="flex items-center justify-between text-xs border-b border-white/10 pb-3">
                   <div className="flex items-center gap-2">
-                    <span className="w-2.5 h-2.5 rounded-full bg-amber-400 animate-pulse shrink-0" />
                     <span className="font-mono text-amber-300 font-bold uppercase tracking-wider text-[11px]">
                       Official MNRE Scheme
                     </span>
@@ -272,7 +271,7 @@ export const PMKusumPage: React.FC<Props> = ({ onNavigate }) => {
 
                     {/* Telemetry Badge */}
                     <div className="absolute top-4 left-4 bg-slate-900/90 backdrop-blur-md px-3 py-1.5 rounded-lg border border-slate-700 text-xs font-mono text-emerald-400 flex items-center gap-2">
-                      <Activity className="w-3.5 h-3.5 animate-pulse text-emerald-400" />
+                      <Activity className="w-3.5 h-3.5 text-emerald-400" />
                       <span>Astronomical Solar Tracking</span>
                     </div>
 

@@ -15,81 +15,83 @@ export const PMSuryaGharPage: React.FC<Props> = ({ onNavigate }) => {
   return (
     <div className="space-y-0 overflow-x-hidden">
       
-      {/* Official Government Scheme Banner with Full-Bleed PM Modi Central Scheme Background */}
-      <section className="relative bg-slate-950 text-white py-16 sm:py-24 border-b border-slate-800 overflow-hidden min-h-[580px] flex items-center">
-        {/* Full-bleed PM Surya Ghar Scheme Banner with Animated Entrance */}
+      {/* Official Government Scheme Banner with Compact Hero & Right-Anchored PM Modi */}
+      <section className="relative bg-slate-950 text-white py-10 sm:py-14 border-b border-slate-800 overflow-hidden min-h-[420px] sm:min-h-[460px] flex items-center">
+        {/* Compact PM Surya Ghar Scheme Banner Background */}
         <motion.div 
-          initial={{ opacity: 0, scale: 1.04 }}
+          initial={{ opacity: 0, scale: 1.02 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
           className="absolute inset-0 z-0"
         >
           <img
             src="/assets/Banner-4-1024x570.png"
             alt="Official PM Surya Ghar Muft Bijli Yojana Central Scheme Banner with PM Narendra Modi"
-            className="w-full h-full object-cover object-center filter brightness-[0.92] contrast-105"
+            className="w-full h-full object-cover object-[right_center] filter brightness-[1.0] contrast-105"
           />
-          {/* Gentle translucent gradients allowing PM Modi and national scheme graphics to be 100% visible */}
-          <div className="absolute inset-0 bg-slate-950/35" />
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/80 via-slate-950/40 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent" />
+          {/* Subtle directional gradient leaving PM Modi and scheme graphics clear and prominent on the right */}
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/80 via-45% to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-slate-950/20 pointer-events-none" />
         </motion.div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-8 relative z-10 w-full">
           
-          <div className="max-w-2xl">
+          <div className="max-w-xl">
             
+            {/* Compact, Elegantly Scaled Hero Card */}
             <motion.div 
-              initial={{ opacity: 0, y: 25 }}
+              initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, ease: [0.21, 0.47, 0.32, 0.98] }}
-              className="space-y-5 p-6 sm:p-8 rounded-3xl backdrop-blur-md bg-slate-950/70 border border-white/15 shadow-2xl"
+              transition={{ duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] }}
+              className="space-y-3.5 p-5 sm:p-6 rounded-2xl backdrop-blur-md bg-slate-950/75 border border-white/20 shadow-xl"
             >
-              <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-solar-400 bg-slate-900/90 backdrop-blur-md px-3 py-1.5 rounded-md border border-solar-500/30 font-semibold shadow-lg">
-                <Sun className="w-3.5 h-3.5 text-solar-400" />
-                Ministry of New & Renewable Energy (MNRE) • National Portal Empanelled
+              <div className="inline-flex items-center gap-1.5 text-[11px] font-mono uppercase tracking-wider text-solar-400 bg-slate-900/90 backdrop-blur-md px-2.5 py-1 rounded-md border border-solar-500/30 font-semibold shadow-sm">
+                <Sun className="w-3 h-3 text-solar-400" />
+                MNRE National Portal Empanelled EPC
               </div>
 
-              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight">
+              <h1 className="text-xl sm:text-2xl lg:text-3xl font-extrabold tracking-tight text-white leading-tight">
                 PM Surya Ghar: Muft Bijli Yojana — Claim Up to ₹78,000 Direct Subsidy
               </h1>
 
-              <p className="text-slate-200 text-sm sm:text-base leading-relaxed max-w-2xl font-normal">
-                The flagship national rooftop solar program providing direct-to-bank subsidies for Indian households. Meghvi Solar is an empanelled EPC partner managing end-to-end National Portal filings, DISCOM approvals, and system handover.
+              <p className="text-slate-200 text-xs sm:text-sm leading-relaxed font-normal">
+                Direct-to-bank subsidy for residential households. Meghvi Solar manages 100% of the National Portal filings, DISCOM net-metering sanctions, and turnkey installation.
               </p>
 
-              <div className="grid grid-cols-3 gap-3 pt-2 text-xs font-mono max-w-2xl">
-                <div className="p-3.5 bg-slate-900/85 backdrop-blur-md rounded-xl border border-slate-700/80 text-center shadow-lg">
-                  <span className="text-slate-400 block text-xs">1 kW System</span>
-                  <span className="text-base sm:text-lg font-bold text-white">₹30,000</span>
-                  <span className="text-xs text-emerald-400 block mt-0.5 font-semibold">Direct DBT Subsidy</span>
+              {/* Compact Subsidy Chips */}
+              <div className="grid grid-cols-3 gap-2 pt-1 text-xs font-mono">
+                <div className="p-2 sm:p-2.5 bg-slate-900/85 backdrop-blur-md rounded-lg border border-slate-700/80 text-center shadow-xs">
+                  <span className="text-slate-400 block text-[10px]">1 kW System</span>
+                  <span className="text-xs sm:text-sm font-bold text-white">₹30,000</span>
+                  <span className="text-[10px] text-emerald-400 block font-semibold">Direct DBT</span>
                 </div>
-                <div className="p-3.5 bg-slate-900/85 backdrop-blur-md rounded-xl border border-slate-700/80 text-center shadow-lg">
-                  <span className="text-slate-400 block text-xs">2 kW System</span>
-                  <span className="text-base sm:text-lg font-bold text-white">₹60,000</span>
-                  <span className="text-xs text-emerald-400 block mt-0.5 font-semibold">Direct DBT Subsidy</span>
+                <div className="p-2 sm:p-2.5 bg-slate-900/85 backdrop-blur-md rounded-lg border border-slate-700/80 text-center shadow-xs">
+                  <span className="text-slate-400 block text-[10px]">2 kW System</span>
+                  <span className="text-xs sm:text-sm font-bold text-white">₹60,000</span>
+                  <span className="text-[10px] text-emerald-400 block font-semibold">Direct DBT</span>
                 </div>
-                <div className="p-3.5 bg-slate-900/85 backdrop-blur-md rounded-xl border border-slate-700/80 text-center ring-1 ring-solar-500/60 shadow-lg">
-                  <span className="text-slate-400 block text-xs">3 kW – 10 kW</span>
-                  <span className="text-base sm:text-lg font-bold text-solar-400">₹78,000</span>
-                  <span className="text-xs text-emerald-400 block mt-0.5 font-semibold">Max Direct Credit</span>
+                <div className="p-2 sm:p-2.5 bg-slate-900/85 backdrop-blur-md rounded-lg border border-solar-500/60 ring-1 ring-solar-500/40 text-center shadow-xs">
+                  <span className="text-slate-400 block text-[10px]">3 kW – 10 kW</span>
+                  <span className="text-xs sm:text-sm font-bold text-solar-400">₹78,000</span>
+                  <span className="text-[10px] text-emerald-400 block font-semibold">Max Credit</span>
                 </div>
               </div>
 
-              <div className="flex flex-wrap items-center gap-3 pt-3">
+              {/* Compact Action Buttons */}
+              <div className="flex flex-wrap items-center gap-2.5 pt-1.5">
                 <motion.a 
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   href="#subsidy-calculator" 
-                  className="btn-amber text-xs sm:text-sm py-3.5 px-6 font-bold shadow-amber-glow"
+                  className="btn-amber text-xs py-2.5 px-4 font-bold shadow-amber-glow"
                 >
-                  Calculate Net Cost After Subsidy
+                  Calculate Net Cost
                 </motion.a>
                 <motion.a 
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   href="#subsidy-form" 
-                  className="btn-stone text-xs sm:text-sm py-3.5 px-6 font-semibold bg-slate-900/90 backdrop-blur-md border border-slate-700 hover:bg-slate-800 text-white"
+                  className="btn-stone text-xs py-2.5 px-4 font-semibold bg-slate-900/90 backdrop-blur-md border border-slate-700 hover:bg-slate-800 text-white"
                 >
                   Check Feeder Eligibility
                 </motion.a>
