@@ -83,7 +83,7 @@ export function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-ivory-50 text-slate-900 selection:bg-solar-500/20 selection:text-solar-950 font-sans w-full max-w-full overflow-x-hidden relative">
+    <div className="min-h-screen flex flex-col bg-ivory-50 text-slate-900 selection:bg-solar-500/20 selection:text-solar-950 font-sans w-full max-w-full overflow-x-clip relative">
       {/* Top Solar Energy Route Transition Beam */}
       <AnimatePresence>
         {isTransitioning && (
@@ -112,7 +112,7 @@ export function App() {
 
       <Navbar currentPath={currentPath} onNavigate={navigateTo} />
       
-      <main className="flex-grow w-full max-w-full overflow-x-hidden">
+      <main className="flex-grow w-full max-w-full overflow-x-clip">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentPath}

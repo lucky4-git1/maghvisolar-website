@@ -174,21 +174,40 @@ export const ProposalCalculator: React.FC<Props> = ({ onSelectPlan, className = 
   const handlePrint = () => {
     setIsPrinting(true);
     try {
-      // 1. Temporarily restore body overflow so browsers can print cleanly
-      document.body.style.overflow = 'visible';
+      // Create or reuse hidden printable iframe for perfect isolated quotation printing
+      let printFrame = document.getElementById('proposal-print-frame') as HTMLIFrameElement | null;
+      if (!printFrame) {
+        printFrame = document.createElement('iframe');
+        printFrame.id = 'proposal-print-frame';
+        printFrame.style.position = 'fixed';
+        printFrame.style.top = '-9999px';
+        printFrame.style.left = '-9999px';
+        printFrame.style.width = '1px';
+        printFrame.style.height = '1px';
+        printFrame.style.opacity = '0';
+        document.body.appendChild(printFrame);
+      }
       
-      // 2. Trigger browser print
-      window.print();
-      
-      setTimeout(() => {
-        setIsPrinting(false);
-        if (showPrintModal) {
-          document.body.style.overflow = 'hidden';
-        }
-      }, 800);
-    } catch (err) {
-      console.warn('window.print() prevented, opening popup window:', err);
-      setIsPrinting(false);
+      const frameDoc = printFrame.contentWindow?.document || printFrame.contentDocument;
+      if (frameDoc && printFrame.contentWindow) {
+        frameDoc.open();
+        frameDoc.write(getProposalHtml());
+        frameDoc.close();
+        
+        setTimeout(() => {
+          try {
+            printFrame?.contentWindow?.focus();
+            printFrame?.contentWindow?.print();
+          } catch {
+            openPrintWindow();
+          } finally {
+            setIsPrinting(false);
+          }
+        }, 350);
+      } else {
+        openPrintWindow();
+      }
+    } catch {
       openPrintWindow();
     }
   };
@@ -359,7 +378,7 @@ export const ProposalCalculator: React.FC<Props> = ({ onSelectPlan, className = 
                   {/* Sizing & Financial Summary Table */}
                   <div className="space-y-2">
                     <h3 className="text-xs font-bold text-slate-900 font-mono uppercase tracking-wider flex items-center gap-1.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-solar-500"></span>
+                      <Sun className="w-3.5 h-3.5 text-solar-500 shrink-0" />
                       1. Proposed System Architecture & Subsidy Breakdown
                     </h3>
                     <div className="border border-stone-200 rounded-xl overflow-hidden text-xs">
@@ -401,7 +420,7 @@ export const ProposalCalculator: React.FC<Props> = ({ onSelectPlan, className = 
                   {/* Savings Projections */}
                   <div className="space-y-2">
                     <h3 className="text-xs font-bold text-slate-900 font-mono uppercase tracking-wider flex items-center gap-1.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-solar-500"></span>
+                      <TrendingUp className="w-3.5 h-3.5 text-solar-500 shrink-0" />
                       2. Lifetime Financial Returns & Payback
                     </h3>
                     <div className="grid grid-cols-3 gap-3 text-center text-xs">
@@ -423,7 +442,7 @@ export const ProposalCalculator: React.FC<Props> = ({ onSelectPlan, className = 
                   {/* Warranties & Grid Standards */}
                   <div className="space-y-2 text-xs text-slate-600 bg-stone-50 p-4 rounded-xl border border-stone-200">
                     <h4 className="font-bold text-slate-900 font-mono uppercase flex items-center gap-1.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-solar-500"></span>
+                      <ShieldCheck className="w-3.5 h-3.5 text-solar-500 shrink-0" />
                       3. Turnkey Scope & Technical Guarantee
                     </h4>
                     <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-2">
