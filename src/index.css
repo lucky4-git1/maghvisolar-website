@@ -1,0 +1,97 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-ivory: #FCFCF9;
+    --text-primary: #0F172A;
+    --solar-amber: #D97706;
+  }
+
+  html {
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: var(--bg-ivory);
+    color: var(--text-primary);
+  }
+
+  h1, h2, h3, h4 {
+    text-wrap: balance;
+    letter-spacing: -0.025em;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /* Accessible focus indicators */
+  *:focus-visible {
+    outline: 2px solid #D97706;
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  /* Tactile button style matching Emil Kowalski & Impeccable guidelines */
+  .btn-primary {
+    @apply inline-flex items-center justify-center font-semibold text-white bg-slate-900 hover:bg-slate-800 active:scale-[0.98] transition-all duration-150 rounded-xl px-5 py-3 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.2),0_1px_2px_rgba(0,0,0,0.12)] border border-slate-900;
+  }
+
+  .btn-amber {
+    @apply inline-flex items-center justify-center font-semibold text-slate-950 bg-solar-500 hover:bg-solar-400 active:scale-[0.98] transition-all duration-150 rounded-xl px-5 py-3 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.35),0_2px_4px_rgba(217,119,6,0.2)] border border-solar-600/30;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center font-medium text-slate-800 bg-white hover:bg-stone-50 active:scale-[0.98] transition-all duration-150 rounded-xl px-5 py-3 border border-stone-200/90 shadow-sm;
+  }
+
+  /* Architectural hairline container */
+  .hairline-card {
+    @apply bg-white border border-stone-200/80 rounded-2xl p-6 transition-all duration-200 shadow-[0_1px_3px_rgba(0,0,0,0.02),0_6px_16px_rgba(0,0,0,0.03)];
+  }
+
+  .technical-pill {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold tracking-wide uppercase font-mono border;
+  }
+}
+
+/* Tabular numbers for financial and energy calculations */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Comfortable AI Chatbot Sleek Vertical Scrollbar */
+.chat-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(203, 213, 225, 0.7) transparent;
+}
+
+.chat-scrollbar::-webkit-scrollbar {
+  width: 5px;
+}
+
+.chat-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+  margin: 6px 0;
+}
+
+.chat-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(203, 213, 225, 0.7);
+  border-radius: 9999px;
+  transition: background-color 0.2s ease;
+}
+
+.chat-scrollbar:hover::-webkit-scrollbar-thumb {
+  background: rgba(217, 119, 6, 0.5);
+}
+
+.chat-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(217, 119, 6, 0.85);
+}
+
