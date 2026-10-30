@@ -127,3 +127,62 @@
   background: rgba(217, 119, 6, 0.95);
 }
 
+/* ==========================================================================
+   OFFICIAL PROPOSAL PRINT & PDF OPTIMIZATION
+   ========================================================================== */
+@media print {
+  /* Hide the rest of the application so ONLY the active proposal renders */
+  body > *:not(#proposal-print-portal) {
+    display: none !important;
+  }
+
+  #proposal-print-portal {
+    display: block !important;
+    position: static !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+  }
+
+  .print-backdrop-container {
+    position: static !important;
+    background: #ffffff !important;
+    backdrop-filter: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: block !important;
+    overflow: visible !important;
+  }
+
+  .print-modal-body {
+    position: static !important;
+    max-height: none !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    overflow: visible !important;
+    box-shadow: none !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: #ffffff !important;
+  }
+
+  .no-print,
+  .print\:hidden {
+    display: none !important;
+  }
+
+  /* Force background colors and borders in PDF export */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  @page {
+    size: A4 portrait;
+    margin: 10mm 12mm 10mm 12mm;
+  }
+}
+
+
