@@ -95,3 +95,35 @@
   background: rgba(217, 119, 6, 0.85);
 }
 
+/* Ultra-Sleek Ergonomic Horizontal Scrollbar for Chat Action Pills */
+.chat-horizontal-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(217, 119, 6, 0.4) transparent;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+.chat-horizontal-scroll::-webkit-scrollbar {
+  height: 3.5px;
+}
+
+.chat-horizontal-scroll::-webkit-scrollbar-track {
+  background: rgba(241, 245, 249, 0.6);
+  border-radius: 9999px;
+  margin: 0 8px;
+}
+
+.chat-horizontal-scroll::-webkit-scrollbar-thumb {
+  background: rgba(217, 119, 6, 0.4);
+  border-radius: 9999px;
+  transition: all 0.2s ease;
+}
+
+.chat-horizontal-scroll:hover::-webkit-scrollbar-thumb {
+  background: rgba(217, 119, 6, 0.75);
+}
+
+.chat-horizontal-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(217, 119, 6, 0.95);
+}
+

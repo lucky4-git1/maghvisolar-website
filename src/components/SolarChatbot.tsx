@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   MessageSquare, X, Send, Bot, User, Phone, PhoneCall, Sparkles, 
-  ArrowRight, Calculator, CheckCircle2, ChevronRight, Volume2, 
+  ArrowRight, Calculator, CheckCircle2, ChevronRight, ChevronLeft, Volume2, 
   VolumeX, RotateCcw, Building2, Home, Users, Tractor, ShieldCheck, 
   IndianRupee, ExternalLink, HelpCircle, Check, Loader2
 } from 'lucide-react';
@@ -108,6 +108,16 @@ export const SolarChatbot: React.FC<Props> = ({ onNavigate }) => {
   });
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const quickScrollRef = useRef<HTMLDivElement>(null);
+
+  const scrollQuick = (direction: 'left' | 'right') => {
+    if (quickScrollRef.current) {
+      quickScrollRef.current.scrollBy({
+        left: direction === 'left' ? -160 : 160,
+        behavior: 'smooth'
+      });
+    }
+  };
 
   useEffect(() => {
     try {
@@ -740,21 +750,51 @@ export const SolarChatbot: React.FC<Props> = ({ onNavigate }) => {
               <div ref={messagesEndRef} />
             </div>
 
-            {/* Streamlined Quick Prompt Suggestions Docked Above Input Bar */}
-            <div className="bg-stone-50/90 border-t border-stone-200/80 px-3 py-1.5 flex items-center gap-1.5 overflow-x-auto no-scrollbar shrink-0 text-xs">
-              <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 font-bold shrink-0 mr-0.5">
-                Quick:
-              </span>
-              {quickActions.map((qa, idx) => (
+            {/* Streamlined Quick Prompt Suggestions Docked Above Input Bar with Sleek Horizontal Scrollie */}
+            <div className="relative bg-stone-50/95 border-t border-stone-200/90 px-2 py-1.5 shrink-0">
+              <div className="flex items-center gap-1">
+                {/* Scroll Left Micro-Button */}
                 <button
-                  key={idx}
                   type="button"
-                  onClick={qa.action}
-                  className="px-2.5 py-1 bg-white hover:bg-solar-50 hover:border-solar-400 border border-stone-200 rounded-full text-slate-700 hover:text-slate-950 whitespace-nowrap font-medium text-[11px] transition-colors shrink-0 shadow-2xs cursor-pointer"
+                  onClick={() => scrollQuick('left')}
+                  className="p-1 rounded-md text-slate-400 hover:text-solar-600 hover:bg-stone-200/70 transition-colors shrink-0"
+                  aria-label="Scroll prompts left"
+                  title="Scroll left"
                 >
-                  {qa.label}
+                  <ChevronLeft className="w-3.5 h-3.5" />
                 </button>
-              ))}
+
+                {/* Horizontal Scroll Track */}
+                <div 
+                  ref={quickScrollRef}
+                  className="flex items-center gap-2 overflow-x-auto chat-horizontal-scroll pb-1 pt-0.5 text-xs flex-1 select-none"
+                >
+                  <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 font-bold shrink-0 ml-1">
+                    Quick:
+                  </span>
+                  {quickActions.map((qa, idx) => (
+                    <button
+                      key={idx}
+                      type="button"
+                      onClick={qa.action}
+                      className="px-3 py-1.5 bg-white hover:bg-gradient-to-r hover:from-amber-50 hover:to-solar-50 border border-stone-200/90 hover:border-solar-400 rounded-full text-slate-700 hover:text-slate-950 font-semibold text-[11px] whitespace-nowrap transition-all duration-150 shrink-0 shadow-2xs hover:shadow-xs hover:-translate-y-0.5 active:scale-95 cursor-pointer"
+                    >
+                      {qa.label}
+                    </button>
+                  ))}
+                </div>
+
+                {/* Scroll Right Micro-Button */}
+                <button
+                  type="button"
+                  onClick={() => scrollQuick('right')}
+                  className="p-1 rounded-md text-slate-400 hover:text-solar-600 hover:bg-stone-200/70 transition-colors shrink-0"
+                  aria-label="Scroll prompts right"
+                  title="Scroll right"
+                >
+                  <ChevronRight className="w-3.5 h-3.5" />
+                </button>
+              </div>
             </div>
 
             {/* Input Bar */}
