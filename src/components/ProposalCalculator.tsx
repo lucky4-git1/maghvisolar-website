@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { PROPOSAL_DATA, SystemProposal, COMPANY_DETAILS } from '../data/solarData';
 import { 
-  ShieldCheck, TrendingUp, IndianRupee, ArrowRight, CheckCircle2, Sun, Printer, X, FileText, Check, PhoneCall, Download, Share2
+  ShieldCheck, TrendingUp, IndianRupee, ArrowRight, CheckCircle2, Sun, Printer, X, FileText, Check, PhoneCall, Download, Share2, ExternalLink
 } from 'lucide-react';
 
 interface Props {
@@ -14,6 +14,7 @@ interface Props {
 export const ProposalCalculator: React.FC<Props> = ({ onSelectPlan, className = "" }) => {
   const [selectedBill, setSelectedBill] = useState<number>(3000);
   const [showPrintModal, setShowPrintModal] = useState<boolean>(false);
+  const [isPrinting, setIsPrinting] = useState<boolean>(false);
   const modalScrollRef = useRef<HTMLDivElement>(null);
   const current = PROPOSAL_DATA[selectedBill] || PROPOSAL_DATA[3000];
 
@@ -30,8 +31,199 @@ export const ProposalCalculator: React.FC<Props> = ({ onSelectPlan, className = 
     return "₹" + val.toLocaleString('en-IN');
   };
 
+  // Generate standalone printable HTML document for instant download or popup print
+  const getProposalHtml = () => {
+    return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Meghvi Solar Official EPC Quotation - ${current.capacity}</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+    body { background: #fff; color: #0f172a; padding: 24px; font-size: 13px; line-height: 1.5; }
+    .header { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 2px solid #0f172a; padding-bottom: 16px; margin-bottom: 20px; }
+    .title { font-size: 20px; font-weight: 800; color: #0f172a; text-transform: uppercase; letter-spacing: -0.5px; }
+    .subtitle { color: #d97706; font-weight: 600; font-size: 12px; margin-top: 4px; }
+    .contact { font-size: 11px; color: #64748b; margin-top: 4px; font-family: monospace; }
+    .ref-badge { background: #f1f5f9; border: 1px solid #cbd5e1; padding: 4px 8px; border-radius: 4px; font-family: monospace; font-size: 11px; font-weight: 700; text-align: right; }
+    .section-title { font-size: 12px; font-weight: 800; font-family: monospace; text-transform: uppercase; letter-spacing: 0.5px; margin: 16px 0 8px; color: #1e293b; }
+    table { width: 100%; border-collapse: collapse; margin-bottom: 16px; border-radius: 8px; overflow: hidden; border: 1px solid #e2e8f0; }
+    th, td { padding: 8px 12px; text-align: left; border-bottom: 1px solid #f1f5f9; font-size: 12px; }
+    th { background: #f8fafc; font-weight: 700; color: #475569; }
+    .text-right { text-align: right; }
+    .font-mono { font-family: monospace; }
+    .highlight-row { background: #ecfdf5; font-weight: 700; color: #065f46; }
+    .total-row { background: #fef3c7; font-weight: 800; font-size: 14px; color: #78350f; border-top: 2px solid #f59e0b; }
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 16px; }
+    .card { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px; text-align: center; }
+    .card-val { font-size: 16px; font-weight: 800; font-family: monospace; color: #0f172a; margin-top: 4px; }
+    .card-emerald { background: #ecfdf5; border-color: #a7f3d0; color: #065f46; }
+    .guarantees { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px; margin-bottom: 20px; }
+    .guarantees-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 11.5px; color: #334155; margin-top: 8px; }
+    .footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #e2e8f0; padding-top: 16px; font-size: 11px; color: #64748b; font-family: monospace; }
+    @media print {
+      body { padding: 0; }
+      @page { size: A4 portrait; margin: 12mm; }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div>
+      <div class="title">MEGHVI SOLAR ENERGY SOLUTIONS</div>
+      <div class="subtitle">MNRE Empanelled Rooftop Solar EPC Contractor • TSSPDCL & TSNPDCL Channel Partner</div>
+      <div class="contact">Beside Chandanagar Metro, Serilingampally, Hyderabad, Telangana 500050 • Tel: +91 97000 02812</div>
+    </div>
+    <div style="text-align: right;">
+      <div class="ref-badge">REF: MVR-HYD-2026</div>
+      <div style="font-size: 11px; color: #64748b; margin-top: 4px;">Date: ${new Date().toLocaleDateString('en-IN', { year: 'numeric', month: 'short', day: 'numeric' })}</div>
+    </div>
+  </div>
+
+  <div class="section-title">1. System Architecture & Turnkey EPC Investment</div>
+  <table>
+    <thead>
+      <tr>
+        <th>Specification Parameter</th>
+        <th class="text-right">Engineering Metric</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Solar PV Array Capacity</td>
+        <td class="text-right font-mono"><strong>${current.capacity} (Tier-1 TOPCon)</strong></td>
+      </tr>
+      <tr>
+        <td>Expected Monthly Power Generation</td>
+        <td class="text-right font-mono">${current.monthlyUnits} Units / Month</td>
+      </tr>
+      <tr>
+        <td>Annual Clean Solar Generation</td>
+        <td class="text-right font-mono">${current.monthlyUnits * 12} Units / Year</td>
+      </tr>
+      <tr>
+        <td>Required Shadow-Free Rooftop Area</td>
+        <td class="text-right font-mono">${current.areaRequiredSqFt} sq.ft</td>
+      </tr>
+      <tr>
+        <td>Gross Turnkey EPC Project Cost</td>
+        <td class="text-right font-mono">${formatCurrency(current.totalCost)}</td>
+      </tr>
+      <tr class="highlight-row">
+        <td>PM Surya Ghar Direct Central Subsidy</td>
+        <td class="text-right font-mono">-${formatCurrency(current.subsidy)}</td>
+      </tr>
+      <tr class="total-row">
+        <td>Net Payable Customer Investment</td>
+        <td class="text-right font-mono">${formatCurrency(current.netCost)}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="section-title">2. Lifetime Financial Returns & Savings</div>
+  <div class="grid">
+    <div class="card">
+      <div style="font-size: 11px; color: #64748b;">Monthly Bill Relief</div>
+      <div class="card-val">${formatCurrency(current.monthlySavings)}</div>
+    </div>
+    <div class="card">
+      <div style="font-size: 11px; color: #64748b;">Year 1 Net Savings</div>
+      <div class="card-val">${formatCurrency(current.annualSavings)}</div>
+    </div>
+    <div class="card card-emerald">
+      <div style="font-size: 11px; color: #065f46;">25-Yr Cumulative Returns</div>
+      <div class="card-val" style="color: #065f46;">${formatCurrency(current.annualSavings * 25)}</div>
+    </div>
+  </div>
+
+  <div class="guarantees">
+    <div style="font-size: 11px; font-weight: 800; font-family: monospace; text-transform: uppercase; color: #1e293b;">
+      3. Turnkey Scope & Technical Guarantee
+    </div>
+    <div class="guarantees-grid">
+      <div>✓ 30-Year Linear Power Degradation Warranty</div>
+      <div>✓ 12-Year Equipment Inverter & BOS Guarantee</div>
+      <div>✓ 5-Year Free Operation & Maintenance (O&M)</div>
+      <div>✓ Direct TSSPDCL / TSNPDCL Net-Metering Sync</div>
+      <div>✓ 80-Micron Hot-Dip Galvanized Mounting</div>
+      <div>✓ 150 km/h Wind Speed Structural Certification</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div>
+      <strong>Meghvi Solar Engineering Division</strong><br>
+      Approved for PM Surya Ghar National Subsidy Portal
+    </div>
+    <div style="text-align: right;">
+      Direct Support: +91 97000 02812 / 99000 02812<br>
+      Email: meghvisolar@gmail.com
+    </div>
+  </div>
+
+  <script>
+    window.onload = function() {
+      setTimeout(function() { window.print(); }, 250);
+    };
+  <\/script>
+</body>
+</html>`;
+  };
+
+  // Robust multi-environment print handler
   const handlePrint = () => {
-    window.print();
+    setIsPrinting(true);
+    try {
+      // 1. Temporarily restore body overflow so browsers can print cleanly
+      document.body.style.overflow = 'visible';
+      
+      // 2. Trigger browser print
+      window.print();
+      
+      setTimeout(() => {
+        setIsPrinting(false);
+        if (showPrintModal) {
+          document.body.style.overflow = 'hidden';
+        }
+      }, 800);
+    } catch (err) {
+      console.warn('window.print() prevented, opening popup window:', err);
+      setIsPrinting(false);
+      openPrintWindow();
+    }
+  };
+
+  // Fallback: Open dedicated print window
+  const openPrintWindow = () => {
+    try {
+      const printWin = window.open('', '_blank');
+      if (printWin) {
+        printWin.document.open();
+        printWin.document.write(getProposalHtml());
+        printWin.document.close();
+      } else {
+        downloadProposalFile();
+      }
+    } catch {
+      downloadProposalFile();
+    }
+  };
+
+  // Fallback: Download official quotation file
+  const downloadProposalFile = () => {
+    try {
+      const blob = new Blob([getProposalHtml()], { type: 'text/html' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `Meghvi_Solar_EPC_Quotation_${current.capacity.replace(/\s+/g, '_')}.html`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    } catch (err) {
+      console.error('File download failed:', err);
+    }
   };
 
   // Lock body scroll and reset modal scroll when opening
@@ -56,21 +248,20 @@ export const ProposalCalculator: React.FC<Props> = ({ onSelectPlan, className = 
     <div className={`bg-white rounded-3xl border border-stone-200/90 shadow-[0_4px_24px_rgba(0,0,0,0.04)] overflow-hidden ${className}`}>
       
       {/* Official Printable Proposal Modal Portaled Directly to document.body */}
-      <AnimatePresence>
-        {showPrintModal && typeof document !== 'undefined' && createPortal(
-          <div id="proposal-print-portal">
-            <div 
-              className="print-backdrop-container fixed inset-0 z-[9999] flex items-center justify-center p-3 sm:p-6 bg-slate-950/80 backdrop-blur-md overflow-y-auto"
-              onClick={(e) => {
-                if (e.target === e.currentTarget) setShowPrintModal(false);
-              }}
-            >
+      {typeof document !== 'undefined' && createPortal(
+        <AnimatePresence>
+          {showPrintModal && (
+            <div id="proposal-print-portal" className="fixed inset-0 z-[99999] flex items-center justify-center p-3 sm:p-6 bg-slate-950/80 backdrop-blur-md overflow-y-auto">
+              <div 
+                className="absolute inset-0 cursor-pointer"
+                onClick={() => setShowPrintModal(false)}
+              />
               <motion.div
                 initial={{ opacity: 0, scale: 0.96, y: 12 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.96, y: 12 }}
                 transition={{ duration: 0.22, ease: [0.21, 0.47, 0.32, 0.98] }}
-                className="print-modal-body bg-white rounded-3xl max-w-2xl w-full max-h-[92vh] flex flex-col border border-stone-200 shadow-2xl text-slate-900 my-auto overflow-hidden"
+                className="print-modal-body bg-white rounded-3xl max-w-2xl w-full max-h-[92vh] flex flex-col border border-stone-200 shadow-2xl text-slate-900 my-auto overflow-hidden relative z-10"
               >
                 {/* Modal Top Controls (Hidden in Print) */}
                 <div className="flex items-center justify-between px-5 sm:px-7 py-4 border-b border-stone-200 bg-stone-50/90 shrink-0 no-print">
@@ -92,17 +283,26 @@ export const ProposalCalculator: React.FC<Props> = ({ onSelectPlan, className = 
                     <button
                       type="button"
                       onClick={handlePrint}
-                      className="btn-amber text-xs font-bold py-2 px-3.5 rounded-xl flex items-center gap-1.5 shadow-xs"
+                      className="btn-amber text-xs font-bold py-2 px-3.5 rounded-xl flex items-center gap-1.5 shadow-xs cursor-pointer"
                       title="Download as PDF or Print"
                     >
-                      <Download className="w-3.5 h-3.5" />
-                      <span>Save as PDF</span>
+                      <Printer className="w-3.5 h-3.5" />
+                      <span>{isPrinting ? 'Preparing...' : 'Print / Save PDF'}</span>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={downloadProposalFile}
+                      className="btn-stone text-xs font-bold py-2 px-3 rounded-xl hidden sm:flex items-center gap-1.5 shadow-xs cursor-pointer"
+                      title="Download Offline HTML Proposal"
+                    >
+                      <Download className="w-3.5 h-3.5 text-solar-500" />
+                      <span>Download</span>
                     </button>
                     <a
                       href={`https://wa.me/919700002812?text=Hello%20Meghvi%20Solar,%20I%20have%20generated%20the%20${encodeURIComponent(current.capacity)}%20rooftop%20solar%20proposal%20(Net:%20${encodeURIComponent(formatCurrency(current.netCost))}).%20Please%20verify%20my%20site%20feasibility.`}
                       target="_blank"
                       rel="noreferrer"
-                      className="btn-stone text-xs font-bold py-2 px-3 rounded-xl hidden sm:flex items-center gap-1.5 shadow-xs"
+                      className="btn-stone text-xs font-bold py-2 px-3 rounded-xl hidden md:flex items-center gap-1.5 shadow-xs cursor-pointer"
                       title="Share to WhatsApp"
                     >
                       <Share2 className="w-3.5 h-3.5 text-emerald-500" />
@@ -112,7 +312,7 @@ export const ProposalCalculator: React.FC<Props> = ({ onSelectPlan, className = 
                       type="button"
                       onClick={() => setShowPrintModal(false)}
                       aria-label="Close Proposal Modal"
-                      className="p-2 text-slate-400 hover:text-slate-800 rounded-xl hover:bg-stone-200/60 transition-colors"
+                      className="p-2 text-slate-400 hover:text-slate-800 rounded-xl hover:bg-stone-200/60 transition-colors cursor-pointer"
                     >
                       <X className="w-5 h-5" />
                     </button>
@@ -276,14 +476,23 @@ export const ProposalCalculator: React.FC<Props> = ({ onSelectPlan, className = 
                     <button
                       type="button"
                       onClick={() => setShowPrintModal(false)}
-                      className="btn-secondary text-xs py-2 px-3.5 flex-1 sm:flex-none justify-center"
+                      className="btn-secondary text-xs py-2 px-3.5 flex-1 sm:flex-none justify-center cursor-pointer"
                     >
                       Close
                     </button>
                     <button
                       type="button"
+                      onClick={openPrintWindow}
+                      className="btn-stone text-xs font-bold py-2 px-3.5 flex-1 sm:flex-none justify-center flex items-center gap-1.5 shadow-xs cursor-pointer"
+                      title="Open in new window"
+                    >
+                      <ExternalLink className="w-3.5 h-3.5" />
+                      <span>New Tab</span>
+                    </button>
+                    <button
+                      type="button"
                       onClick={handlePrint}
-                      className="btn-amber text-xs font-bold py-2 px-4 flex-1 sm:flex-none justify-center flex items-center gap-1.5 shadow-xs"
+                      className="btn-amber text-xs font-bold py-2 px-4 flex-1 sm:flex-none justify-center flex items-center gap-1.5 shadow-xs cursor-pointer"
                     >
                       <Printer className="w-3.5 h-3.5" />
                       <span>Print Quotation</span>
@@ -292,10 +501,10 @@ export const ProposalCalculator: React.FC<Props> = ({ onSelectPlan, className = 
                 </div>
               </motion.div>
             </div>
-          </div>,
-          document.body
-        )}
-      </AnimatePresence>
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
 
       {/* Header bar with Solar Panel Background */}
       <div className="relative bg-slate-900 text-white p-6 sm:p-8 border-b border-slate-800 overflow-hidden">

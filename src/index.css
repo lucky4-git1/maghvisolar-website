@@ -131,6 +131,12 @@
    OFFICIAL PROPOSAL PRINT & PDF OPTIMIZATION
    ========================================================================== */
 @media print {
+  html, body {
+    overflow: visible !important;
+    height: auto !important;
+    background: #ffffff !important;
+  }
+
   /* Hide the rest of the application so ONLY the active proposal renders */
   body > *:not(#proposal-print-portal) {
     display: none !important;
