@@ -53,14 +53,14 @@ export const HomePage: React.FC<Props> = ({ onNavigate }) => {
     }
   ];
 
-  // Auto-cycle through architectural showcases
+  // Auto-cycle through architectural showcases with smooth timer reset on tab switch
   useEffect(() => {
     if (!isAutoPlaying) return;
     const interval = setInterval(() => {
       setActiveHeroTab((prev) => (prev + 1) % heroShowcases.length);
     }, 5500);
     return () => clearInterval(interval);
-  }, [isAutoPlaying, heroShowcases.length]);
+  }, [isAutoPlaying, activeHeroTab, heroShowcases.length]);
 
   const handleNext = () => {
     setActiveHeroTab((prev) => (prev + 1) % heroShowcases.length);
@@ -76,8 +76,6 @@ export const HomePage: React.FC<Props> = ({ onNavigate }) => {
       {/* HERO SECTION WITH DYNAMIC BACKGROUND CAROUSEL (100vh IMMERSIVE) */}
       <section 
         className="relative min-h-[calc(100vh-4.25rem)] lg:min-h-[calc(100vh-4.25rem)] lg:max-h-[1020px] flex items-center py-8 lg:py-6 overflow-hidden bg-ivory-50 border-b border-stone-200/80"
-        onMouseEnter={() => setIsAutoPlaying(false)}
-        onMouseLeave={() => setIsAutoPlaying(true)}
       >
         {/* Full-Bleed Vivid Background Carousel with Light White Vignette */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
