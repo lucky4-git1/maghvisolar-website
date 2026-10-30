@@ -15,86 +15,139 @@ export const PMSuryaGharPage: React.FC<Props> = ({ onNavigate }) => {
   return (
     <div className="space-y-0 overflow-x-hidden">
       
-      {/* Official Government Scheme Banner with Compact Hero & Right-Anchored PM Modi */}
-      <section className="relative bg-slate-950 text-white py-10 sm:py-14 border-b border-slate-800 overflow-hidden min-h-[420px] sm:min-h-[460px] flex items-center">
-        {/* Compact PM Surya Ghar Scheme Banner Background */}
-        <motion.div 
-          initial={{ opacity: 0, scale: 1.02 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-          className="absolute inset-0 z-0"
-        >
-          <img
-            src="/assets/Banner-4-1024x570.png"
-            alt="Official PM Surya Ghar Muft Bijli Yojana Central Scheme Banner with PM Narendra Modi"
-            className="w-full h-full object-cover object-[right_center] filter brightness-[1.0] contrast-105"
-          />
-          {/* Subtle directional gradient leaving PM Modi and scheme graphics clear and prominent on the right */}
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/80 via-45% to-transparent pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-slate-950/20 pointer-events-none" />
-        </motion.div>
-        
+      {/* Dignified Editorial Split Hero: Official Government Scheme & Subsidy Architecture */}
+      <section className="relative bg-slate-950 text-white py-14 sm:py-20 border-b border-slate-900 overflow-hidden">
+        {/* Subtle architectural hairline grid background */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-20 pointer-events-none" />
+
         <div className="max-w-7xl mx-auto px-4 sm:px-8 relative z-10 w-full">
           
-          <div className="max-w-xl">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 xl:gap-14 items-center">
             
-            {/* Compact, Elegantly Scaled Hero Card */}
+            {/* Left Column: Authoritative Scheme Overview & Financial Scale */}
             <motion.div 
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] }}
-              className="space-y-3.5 p-5 sm:p-6 rounded-2xl backdrop-blur-md bg-slate-950/75 border border-white/20 shadow-xl"
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              className="lg:col-span-7 space-y-6"
             >
-              <div className="inline-flex items-center gap-1.5 text-[11px] font-mono uppercase tracking-wider text-solar-400 bg-slate-900/90 backdrop-blur-md px-2.5 py-1 rounded-md border border-solar-500/30 font-semibold shadow-sm">
-                <Sun className="w-3 h-3 text-solar-400" />
-                MNRE National Portal Empanelled EPC
+              <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-solar-400 bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-800 font-semibold shadow-xs">
+                <Sun className="w-3.5 h-3.5 text-solar-400" />
+                Ministry of New & Renewable Energy • National Rooftop Portal
               </div>
 
-              <h1 className="text-xl sm:text-2xl lg:text-3xl font-extrabold tracking-tight text-white leading-tight">
-                PM Surya Ghar: Muft Bijli Yojana — Claim Up to ₹78,000 Direct Subsidy
-              </h1>
+              <div>
+                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.12]">
+                  PM Surya Ghar: Muft Bijli Yojana
+                </h1>
+                <p className="text-lg sm:text-xl font-bold text-solar-400 mt-2">
+                  Claim Up to ₹78,000 Direct Central Subsidy for Residential Solar
+                </p>
+              </div>
 
-              <p className="text-slate-200 text-xs sm:text-sm leading-relaxed font-normal">
-                Direct-to-bank subsidy for residential households. Meghvi Solar manages 100% of the National Portal filings, DISCOM net-metering sanctions, and turnkey installation.
+              <p className="text-slate-300 text-sm sm:text-base leading-relaxed max-w-2xl font-normal">
+                The flagship national rooftop solar program providing direct-to-bank subsidies for Indian households. Meghvi Solar is an empanelled EPC partner managing end-to-end National Portal filings, DISCOM approvals, and system handover.
               </p>
 
-              {/* Compact Subsidy Chips */}
-              <div className="grid grid-cols-3 gap-2 pt-1 text-xs font-mono">
-                <div className="p-2 sm:p-2.5 bg-slate-900/85 backdrop-blur-md rounded-lg border border-slate-700/80 text-center shadow-xs">
-                  <span className="text-slate-400 block text-[10px]">1 kW System</span>
-                  <span className="text-xs sm:text-sm font-bold text-white">₹30,000</span>
-                  <span className="text-[10px] text-emerald-400 block font-semibold">Direct DBT</span>
+              {/* Clean Financial Schedule Matrix */}
+              <div className="border border-slate-800 rounded-2xl bg-slate-900/60 divide-y divide-slate-800/80 overflow-hidden font-mono text-xs">
+                <div className="p-3.5 flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <span className="font-bold text-white text-sm">1 kW System</span>
+                    <span className="text-slate-400 text-xs hidden sm:inline">• 2–4 Panels</span>
+                  </div>
+                  <div className="text-right">
+                    <span className="font-bold text-emerald-400 text-sm">₹30,000</span>
+                    <span className="text-slate-400 text-[11px] block">Direct Bank Credit</span>
+                  </div>
                 </div>
-                <div className="p-2 sm:p-2.5 bg-slate-900/85 backdrop-blur-md rounded-lg border border-slate-700/80 text-center shadow-xs">
-                  <span className="text-slate-400 block text-[10px]">2 kW System</span>
-                  <span className="text-xs sm:text-sm font-bold text-white">₹60,000</span>
-                  <span className="text-[10px] text-emerald-400 block font-semibold">Direct DBT</span>
+
+                <div className="p-3.5 flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <span className="font-bold text-white text-sm">2 kW System</span>
+                    <span className="text-slate-400 text-xs hidden sm:inline">• 4–6 Panels</span>
+                  </div>
+                  <div className="text-right">
+                    <span className="font-bold text-emerald-400 text-sm">₹60,000</span>
+                    <span className="text-slate-400 text-[11px] block">Direct Bank Credit</span>
+                  </div>
                 </div>
-                <div className="p-2 sm:p-2.5 bg-slate-900/85 backdrop-blur-md rounded-lg border border-solar-500/60 ring-1 ring-solar-500/40 text-center shadow-xs">
-                  <span className="text-slate-400 block text-[10px]">3 kW – 10 kW</span>
-                  <span className="text-xs sm:text-sm font-bold text-solar-400">₹78,000</span>
-                  <span className="text-[10px] text-emerald-400 block font-semibold">Max Credit</span>
+
+                <div className="p-3.5 flex items-center justify-between bg-solar-500/5">
+                  <div className="flex items-center gap-3">
+                    <span className="font-bold text-solar-400 text-sm">3 kW to 10 kW</span>
+                    <span className="text-solar-300/70 text-xs hidden sm:inline">• 6–20 Panels</span>
+                  </div>
+                  <div className="text-right">
+                    <span className="font-bold text-solar-400 text-sm">₹78,000</span>
+                    <span className="text-solar-300/80 text-[11px] block font-semibold">Maximum Grant</span>
+                  </div>
                 </div>
               </div>
 
-              {/* Compact Action Buttons */}
-              <div className="flex flex-wrap items-center gap-2.5 pt-1.5">
+              {/* Restrained Tactile Action Buttons */}
+              <div className="flex flex-wrap items-center gap-3 pt-2">
                 <motion.a 
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   href="#subsidy-calculator" 
-                  className="btn-amber text-xs py-2.5 px-4 font-bold shadow-amber-glow"
+                  className="btn-amber text-xs sm:text-sm py-3 px-5 font-bold shadow-amber-glow"
                 >
-                  Calculate Net Cost
+                  Calculate Net Cost After Subsidy
                 </motion.a>
                 <motion.a 
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   href="#subsidy-form" 
-                  className="btn-stone text-xs py-2.5 px-4 font-semibold bg-slate-900/90 backdrop-blur-md border border-slate-700 hover:bg-slate-800 text-white"
+                  className="btn-stone text-xs sm:text-sm py-3 px-5 font-semibold bg-slate-900 border border-slate-800 hover:bg-slate-850 text-white"
                 >
                   Check Feeder Eligibility
                 </motion.a>
+              </div>
+            </motion.div>
+
+            {/* Right Column: Pristine High-Resolution Official Scheme Showcase */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.97 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.65, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+              className="lg:col-span-5"
+            >
+              <div className="rounded-3xl border border-slate-800 bg-slate-900/80 shadow-2xl overflow-hidden">
+                {/* Showcase Header */}
+                <div className="px-5 py-3 bg-slate-950/80 border-b border-slate-800/80 flex items-center justify-between text-xs">
+                  <span className="font-mono text-slate-300 font-semibold tracking-wide">
+                    Official Central Government Portal
+                  </span>
+                  <span className="font-mono text-[11px] px-2.5 py-0.5 rounded-md bg-emerald-950 text-emerald-400 border border-emerald-800/60 font-semibold">
+                    MNRE Verified
+                  </span>
+                </div>
+
+                {/* High-Resolution Uncropped Official Banner */}
+                <div className="relative bg-black overflow-hidden group">
+                  <img
+                    src="/assets/Banner-4-1024x570.png"
+                    alt="Official PM Surya Ghar Muft Bijli Yojana Central Scheme Banner with PM Narendra Modi"
+                    className="w-full h-auto object-cover block group-hover:scale-102 transition-transform duration-700"
+                  />
+                </div>
+
+                {/* Statutory Assurances Strip */}
+                <div className="p-4 bg-slate-950/90 border-t border-slate-800/80 space-y-2 text-xs font-mono text-slate-300">
+                  <div className="flex items-center gap-2">
+                    <ShieldCheck className="w-3.5 h-3.5 text-solar-400 shrink-0" />
+                    <span>Direct Bank Transfer (DBT) to Aadhaar-linked account</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <ShieldCheck className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                    <span>Zero upfront fee on National Portal registration</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <ShieldCheck className="w-3.5 h-3.5 text-blue-400 shrink-0" />
+                    <span>Complete TSSPDCL / TSNPDCL net-meter sync</span>
+                  </div>
+                </div>
               </div>
             </motion.div>
 

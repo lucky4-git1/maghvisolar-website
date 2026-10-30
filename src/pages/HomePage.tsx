@@ -73,9 +73,9 @@ export const HomePage: React.FC<Props> = ({ onNavigate }) => {
   return (
     <div className="space-y-0 overflow-x-hidden">
       
-      {/* HERO SECTION WITH DYNAMIC BACKGROUND CAROUSEL */}
+      {/* HERO SECTION WITH DYNAMIC BACKGROUND CAROUSEL (100vh IMMERSIVE) */}
       <section 
-        className="relative pt-8 sm:pt-14 pb-20 overflow-hidden bg-ivory-50 border-b border-stone-200/80"
+        className="relative min-h-[calc(100vh-4.25rem)] lg:min-h-screen flex items-center py-12 sm:py-16 overflow-hidden bg-ivory-50 border-b border-stone-200/80"
         onMouseEnter={() => setIsAutoPlaying(false)}
         onMouseLeave={() => setIsAutoPlaying(true)}
       >
