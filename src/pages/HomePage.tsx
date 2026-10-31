@@ -90,7 +90,7 @@ export const HomePage: React.FC<Props> = ({ onNavigate }) => {
       <section 
         className="relative min-h-[100dvh] flex flex-col justify-center items-center py-16 sm:py-20 lg:py-24 overflow-hidden bg-ivory-50 border-b border-stone-200/80"
       >
-        {/* Full-Bleed Vivid Background Carousel - Full Clarity & Contrast (No Pale Washout) */}
+        {/* Full-Bleed Vivid Background Carousel - Full Clarity & Contrast (No Pale Washout or Circular Halo) */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
           <AnimatePresence mode="wait">
             <motion.img
@@ -98,16 +98,15 @@ export const HomePage: React.FC<Props> = ({ onNavigate }) => {
               src={heroShowcases[activeSlide].image}
               alt={heroShowcases[activeSlide].title}
               initial={{ opacity: 0, scale: 1.02 }}
-              animate={{ opacity: 0.95, scale: 1 }}
+              animate={{ opacity: 0.92, scale: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.7, ease: "easeOut" }}
-              className="w-full h-full object-cover object-center filter contrast-105 saturate-110"
+              className="w-full h-full object-cover object-center filter contrast-105"
             />
           </AnimatePresence>
-          {/* Crisp Ambient Scrim - Light & Non-Destructive (Preserves Vivid Image Contrast) */}
-          <div className="absolute inset-0 bg-white/20 pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-t from-ivory-50 via-transparent to-slate-950/15 pointer-events-none" />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.78)_0%,rgba(255,255,255,0.32)_58%,transparent_100%)] pointer-events-none" />
+          {/* Crisp Clean Uniform Scrim - No Circular Radial Halo */}
+          <div className="absolute inset-0 bg-white/40 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-ivory-50 via-transparent to-slate-900/10 pointer-events-none" />
         </div>
 
         {/* Centered High-Focus Content Container */}
@@ -131,8 +130,8 @@ export const HomePage: React.FC<Props> = ({ onNavigate }) => {
               <span className="text-solar-600 font-black">MNRE ACCREDITED</span>
             </motion.div>
 
-            {/* Attention-Grabbing Hero Headline with Smooth Dynamic Rotating Word */}
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-slate-950 tracking-tight leading-[1.08] text-balance mb-6 drop-shadow-[0_2px_4px_rgba(255,255,255,0.95)]">
+            {/* Attention-Grabbing Hero Headline with Smooth Dynamic Rotating Word (No White Text Halo) */}
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-slate-950 tracking-tight leading-[1.08] text-balance mb-6">
               Energy, engineered <br />
               <span className="inline-block relative h-[1.25em] align-top overflow-hidden">
                 <AnimatePresence mode="wait">
@@ -142,7 +141,7 @@ export const HomePage: React.FC<Props> = ({ onNavigate }) => {
                     animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                     exit={{ opacity: 0, y: -32, filter: "blur(6px)" }}
                     transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-                    className="inline-block bg-gradient-to-r from-amber-600 via-solar-600 to-amber-700 bg-clip-text text-transparent underline decoration-solar-400/40 decoration-wavy decoration-2 underline-offset-8"
+                    className="inline-block bg-gradient-to-r from-amber-600 via-solar-600 to-amber-700 bg-clip-text text-transparent"
                   >
                     {rotatingWords[activeWordIndex]}
                   </motion.span>
@@ -150,8 +149,8 @@ export const HomePage: React.FC<Props> = ({ onNavigate }) => {
               </span>
             </h1>
 
-            {/* Clear, High-Calm Subtitle */}
-            <p className="text-slate-950 text-base sm:text-lg lg:text-xl font-bold max-w-2xl mx-auto leading-relaxed text-pretty drop-shadow-[0_1px_2px_rgba(255,255,255,0.95)] mb-8">
+            {/* Clear, High-Calm Subtitle (No White Text Halo) */}
+            <p className="text-slate-900 text-base sm:text-lg lg:text-xl font-medium max-w-2xl mx-auto leading-relaxed text-pretty mb-8">
               Turnkey rooftop solar EPC for discerning residences, gated societies, and commercial enterprises. Slash power bills by up to 90% with Tier-1 TOPCon photovoltaics and guaranteed DISCOM net-metering.
             </p>
 
