@@ -15,7 +15,7 @@ interface Props {
 
 export const HousingSocietiesPage: React.FC<Props> = ({ onNavigate }) => {
   return (
-    <div className="space-y-0 overflow-x-hidden">
+    <div className="space-y-0 overflow-x-clip">
       
       {/* Hero Header with High-Rise Community Aerial Background */}
       <section className="relative bg-slate-950 text-white py-20 sm:py-28 border-b border-slate-800 overflow-hidden">

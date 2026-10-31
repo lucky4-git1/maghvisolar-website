@@ -11,7 +11,7 @@ interface Props {
 
 export const ContactPage: React.FC<Props> = ({ onNavigate }) => {
   return (
-    <div className="space-y-0 overflow-x-hidden">
+    <div className="space-y-0 overflow-x-clip">
       
       {/* High-Impact Architectural Banner */}
       <section className="relative bg-slate-950 text-white py-20 sm:py-32 border-b border-slate-800 overflow-hidden">

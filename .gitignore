@@ -37,6 +37,7 @@ scraped_home.html
 screenshots/
 original_pages_analysis.txt
 .impeccable/
+.hallmark/
 
 # impeccable-live-ignore-start
 .impeccable/hook.cache.json

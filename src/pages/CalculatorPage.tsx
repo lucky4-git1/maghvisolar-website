@@ -12,7 +12,7 @@ interface Props {
 
 export const CalculatorPage: React.FC<Props> = ({ onNavigate }) => {
   return (
-    <div className="space-y-0 overflow-x-hidden">
+    <div className="space-y-0 overflow-x-clip">
       
       {/* Header with Full-Bleed Hybrid Storage & Telemetry Asset */}
       <section className="relative bg-slate-950 text-white py-16 sm:py-24 border-b border-slate-800 overflow-hidden">

@@ -13,7 +13,7 @@ interface Props {
 
 export const PMSuryaGharPage: React.FC<Props> = ({ onNavigate }) => {
   return (
-    <div className="space-y-0 overflow-x-hidden">
+    <div className="space-y-0 overflow-x-clip">
       
       {/* Dignified Editorial Split Hero: Official Government Scheme & Subsidy Architecture */}
       <section className="relative bg-slate-950 text-white py-14 sm:py-20 border-b border-slate-900 overflow-hidden">

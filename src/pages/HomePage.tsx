@@ -71,7 +71,7 @@ export const HomePage: React.FC<Props> = ({ onNavigate }) => {
   };
 
   return (
-    <div className="space-y-0 overflow-x-hidden">
+    <div className="space-y-0 overflow-x-clip">
       
       {/* HERO SECTION WITH DYNAMIC BACKGROUND CAROUSEL (100vh IMMERSIVE) */}
       <section 

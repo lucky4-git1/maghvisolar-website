@@ -15,7 +15,7 @@ interface Props {
 
 export const CommercialPage: React.FC<Props> = ({ onNavigate }) => {
   return (
-    <div className="space-y-0 overflow-x-hidden">
+    <div className="space-y-0 overflow-x-clip">
       
       {/* Hero Header with Full-Bleed Commercial Rooftop Banner */}
       <section className="relative bg-slate-950 text-white py-20 sm:py-28 border-b border-slate-900 overflow-hidden">
