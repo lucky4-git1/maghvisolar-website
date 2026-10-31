@@ -8,9 +8,9 @@ import { ProjectShowcase } from '../components/ProjectShowcase';
 import { ScrollReveal, StaggerContainer, StaggerItem } from '../components/motion/MotionWrapper';
 import { FAQ_ITEMS, COMPANY_DETAILS } from '../data/solarData';
 import { 
-  Sun, ShieldCheck, Zap, ArrowRight, CheckCircle2, ChevronRight, ChevronLeft,
+  Sun, ShieldCheck, Zap, ArrowRight, CheckCircle2,
   Layers, Cpu, Activity, Clock, FileCheck2, Building2, Home, Users,
-  Sparkles, Check, ChevronDown, Radio, BarChart3, Gauge, Play, Pause
+  Sparkles, Check, ChevronDown, Radio, BarChart3, Gauge
 } from 'lucide-react';
 
 interface Props {
@@ -18,312 +18,198 @@ interface Props {
 }
 
 export const HomePage: React.FC<Props> = ({ onNavigate }) => {
-  // Hero interactive visual tab state
-  const [activeHeroTab, setActiveHeroTab] = useState<number>(0);
-  const [isAutoPlaying, setIsAutoPlaying] = useState<boolean>(true);
-
-  const heroShowcases = [
-    {
-      title: "Jubilee Hills Luxury Villa",
-      tag: "Residential EPC • 15 kW",
-      image: "/assets/luxury_hyderabad_solar_villa.jpg",
-      badge: "Zero Terrace Penetration Pergola",
-      highlight: "All-Black TOPCon Cells with Zero-Glare Architectural Framing"
-    },
-    {
-      title: "Hyderabad Residential Rooftop",
-      tag: "Turnkey Net-Metered • 8 kW",
-      image: "/assets/install-solar-power-at-home-1024x683-1.jpg",
-      badge: "150 km/h Cyclone Rated",
-      highlight: "Hot-Dip Galvanized Structure Retaining Full Terrace Usability"
-    },
-    {
-      title: "Industrial & Commercial Facility",
-      tag: "Megawatt Scale • 350 kW",
-      image: "/assets/commercial_industrial_solar_rooftop.jpg",
-      badge: "40% Accelerated Depreciation",
-      highlight: "Trapezoidal Aluminum Anodized Mounts with HT Inverter Sync"
-    },
-    {
-      title: "Hybrid Telemetry & Storage",
-      tag: "BESS Storage • 15 kWh",
-      image: "/assets/smart_inverter_battery_storage.jpg",
-      badge: "20ms Uninterrupted Power",
-      highlight: "Modular Lithium-Ion BESS with Real-Time Mobile Cloud Diagnostics"
-    }
+  // Rotating dynamic headline phrases for elegant, attention-grabbing animation
+  const rotatingWords = [
+    "beautifully.",
+    "for ₹0 bills.",
+    "for 30+ years.",
+    "with ₹78k subsidy.",
+    "effortlessly."
   ];
+  const [activeWordIndex, setActiveWordIndex] = useState<number>(0);
 
-  // Auto-cycle through architectural showcases with smooth timer reset on tab switch
+  // Subtle ambient background carousel
+  const heroBackgrounds = [
+    "/assets/luxury_hyderabad_solar_villa.jpg",
+    "/assets/install-solar-power-at-home-1024x683-1.jpg",
+    "/assets/commercial_industrial_solar_rooftop.jpg"
+  ];
+  const [activeBgIndex, setActiveBgIndex] = useState<number>(0);
+
+  // Cycle rotating animated headline text
   useEffect(() => {
-    if (!isAutoPlaying) return;
-    const interval = setInterval(() => {
-      setActiveHeroTab((prev) => (prev + 1) % heroShowcases.length);
-    }, 5500);
-    return () => clearInterval(interval);
-  }, [isAutoPlaying, activeHeroTab, heroShowcases.length]);
+    const wordInterval = setInterval(() => {
+      setActiveWordIndex((prev) => (prev + 1) % rotatingWords.length);
+    }, 2800);
+    return () => clearInterval(wordInterval);
+  }, [rotatingWords.length]);
 
-  const handleNext = () => {
-    setActiveHeroTab((prev) => (prev + 1) % heroShowcases.length);
-  };
-
-  const handlePrev = () => {
-    setActiveHeroTab((prev) => (prev - 1 + heroShowcases.length) % heroShowcases.length);
-  };
+  // Subtle slow ambient background crossfade
+  useEffect(() => {
+    const bgInterval = setInterval(() => {
+      setActiveBgIndex((prev) => (prev + 1) % heroBackgrounds.length);
+    }, 7000);
+    return () => clearInterval(bgInterval);
+  }, [heroBackgrounds.length]);
 
   return (
     <div className="space-y-0 overflow-x-clip">
       
-      {/* HERO SECTION WITH DYNAMIC BACKGROUND CAROUSEL (100vh IMMERSIVE) */}
+      {/* HERO SECTION: SIMPLE, ELEGANT, 100VH IMMERSIVE WITH ATTENTION-GRABBING TEXT ANIMATION */}
       <section 
-        className="relative min-h-[calc(100vh-4.25rem)] lg:min-h-[calc(100vh-4.25rem)] lg:max-h-[1020px] flex items-center py-8 lg:py-6 overflow-hidden bg-ivory-50 border-b border-stone-200/80"
+        className="relative min-h-[100dvh] flex flex-col justify-center items-center py-16 sm:py-20 lg:py-24 overflow-hidden bg-ivory-50 border-b border-stone-200/80"
       >
-        {/* Full-Bleed Vivid Background Carousel with Light White Vignette */}
+        {/* Full-Bleed Ambient Architectural Background with Soft Vignette */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
           <AnimatePresence mode="wait">
             <motion.img
-              key={activeHeroTab}
-              src={heroShowcases[activeHeroTab].image}
-              alt="Meghvi Solar Background Architecture"
+              key={activeBgIndex}
+              src={heroBackgrounds[activeBgIndex]}
+              alt="Meghvi Solar Architectural Rooftop"
               initial={{ opacity: 0, scale: 1.04 }}
-              animate={{ opacity: 0.88, scale: 1 }}
+              animate={{ opacity: 0.18, scale: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.9, ease: "easeOut" }}
+              transition={{ duration: 1.2, ease: "easeOut" }}
               className="w-full h-full object-cover object-center filter contrast-105"
             />
           </AnimatePresence>
-          {/* Light White Vignette: soft ambient edge illumination keeping carousel images 100% visible across the whole hero */}
-          <div className="absolute inset-0 bg-white/20 pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-t from-white/75 via-transparent to-white/45 pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-r from-white/60 via-transparent to-white/40 pointer-events-none" />
+          {/* Ambient Lighting & Soft Edge Vignettes for Ultra-Crisp Text Contrast */}
+          <div className="absolute inset-0 bg-ivory-50/70 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-ivory-50 via-transparent to-ivory-50/80 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-r from-ivory-50/90 via-transparent to-ivory-50/90 pointer-events-none" />
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-8 w-full relative z-10">
+        {/* Centered High-Focus Content Container */}
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10 text-center flex flex-col items-center">
           
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 xl:gap-12 items-center">
-            
-            {/* Left Content Column with Bold High-Contrast Typography */}
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] }}
-              className="lg:col-span-7 space-y-4 lg:space-y-4 xl:space-y-5"
-            >
-              
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-white/95 border border-stone-300 text-slate-950 text-xs font-mono font-extrabold max-w-full shadow-2xs">
-                <span className="truncate">HYDERABAD & TELANGANA TIER-1 SOLAR EPC</span>
-              </div>
-
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black text-slate-950 tracking-tight leading-[1.08] text-balance drop-shadow-[0_2px_4px_rgba(255,255,255,0.9)]">
-                Energy, engineered <br className="hidden sm:inline" />
-                <span className="text-solar-600 drop-shadow-[0_2px_4px_rgba(255,255,255,0.9)]">
-                  beautifully.
-                </span>
-              </h1>
-
-              <p className="text-slate-950 text-sm sm:text-base leading-relaxed max-w-xl text-pretty font-bold drop-shadow-[0_1px_2px_rgba(255,255,255,0.95)]">
-                Turnkey rooftop solar EPC for discerning residences, gated societies, and commercial enterprises across Telangana. Slash power bills by up to 90% with Tier-1 TOPCon photovoltaics and guaranteed DISCOM net-metering.
-              </p>
-
-              {/* Badges */}
-              <div className="flex flex-wrap items-center gap-2 pt-0.5 text-xs font-mono text-slate-950 font-bold">
-                <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white/95 border border-stone-300 shadow-2xs">
-                  <ShieldCheck className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                  <span>₹78,000 PM Surya Ghar Subsidy</span>
-                </div>
-                <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white/95 border border-stone-300 shadow-2xs">
-                  <Clock className="w-3.5 h-3.5 text-solar-600 shrink-0" />
-                  <span>30-Year Linear Warranty</span>
-                </div>
-                <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white/95 border border-stone-300 shadow-2xs">
-                  <Activity className="w-3.5 h-3.5 text-indigo-600 shrink-0" />
-                  <span>5-Year Comprehensive O&M</span>
-                </div>
-              </div>
-
-              {/* CTAs */}
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-1">
-                <motion.a
-                  whileHover={{ scale: 1.02, y: -1 }}
-                  whileTap={{ scale: 0.98 }}
-                  href="#proposal-studio"
-                  className="btn-amber text-xs sm:text-sm py-3 px-5 sm:px-6 font-bold flex items-center justify-center gap-2 shadow-amber-glow"
-                >
-                  <span>Instant Solar Proposal</span>
-                  <ArrowRight className="w-4 h-4" />
-                </motion.a>
-
-                <motion.a
-                  whileHover={{ scale: 1.02, y: -1 }}
-                  whileTap={{ scale: 0.98 }}
-                  href="#consultation-form"
-                  className="btn-primary text-xs sm:text-sm py-3 px-5 sm:px-6 font-semibold flex items-center justify-center gap-2"
-                >
-                  <span>Book Free Roof Survey</span>
-                </motion.a>
-              </div>
-
-              {/* Trust Metric Counters */}
-              <div className="pt-4 border-t border-stone-200/90 grid grid-cols-3 gap-3">
-                <div>
-                  <span className="text-xl sm:text-2xl xl:text-3xl font-extrabold text-slate-900 font-mono block tabular-nums">
-                    500+
-                  </span>
-                  <span className="text-[11px] sm:text-xs text-slate-600 font-medium">Homes & Facilities Powered</span>
-                </div>
-                <div>
-                  <span className="text-xl sm:text-2xl xl:text-3xl font-extrabold text-emerald-700 font-mono block tabular-nums">
-                    ₹78k
-                  </span>
-                  <span className="text-[11px] sm:text-xs text-slate-600 font-medium">Max Central Subsidy</span>
-                </div>
-                <div>
-                  <span className="text-xl sm:text-2xl xl:text-3xl font-extrabold text-solar-600 font-mono block tabular-nums">
-                    100%
-                  </span>
-                  <span className="text-[11px] sm:text-xs text-slate-600 font-medium">DISCOM Net-Metered</span>
-                </div>
-              </div>
-
-            </motion.div>
-
-            {/* Right Hero Visual: Interactive Architectural Media Deck */}
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.96 }}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            className="flex flex-col items-center w-full"
+          >
+            {/* Top Eyebrow Pill */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.65, delay: 0.15, ease: [0.21, 0.47, 0.32, 0.98] }}
-              className="lg:col-span-5 space-y-2.5 w-full min-w-0"
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/95 border border-stone-300 text-slate-900 text-xs font-mono font-bold shadow-xs mb-6 sm:mb-8"
             >
-              
-              {/* Media Display Container with smooth fade transitions */}
-              <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden border border-stone-300 shadow-xl bg-slate-950 h-64 sm:h-72 lg:h-[260px] xl:h-[300px] group">
-                <AnimatePresence mode="wait">
-                  <motion.img
-                    key={activeHeroTab}
-                    src={heroShowcases[activeHeroTab].image}
-                    alt={heroShowcases[activeHeroTab].title}
-                    initial={{ opacity: 0, scale: 1.04 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.98 }}
-                    transition={{ duration: 0.45, ease: 'easeInOut' }}
-                    className="w-full h-full object-cover"
-                  />
-                </AnimatePresence>
-
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/25 to-transparent pointer-events-none" />
-                
-                {/* Floating Telemetry Tag */}
-                <div className="absolute top-3 left-3 bg-slate-900/90 backdrop-blur-md text-white text-[11px] font-mono px-2 py-0.5 rounded-md border border-slate-700/80 flex items-center gap-1.5 shadow-xs font-medium z-10">
-                  <span className="text-emerald-400 font-bold">/</span>
-                  <span>{heroShowcases[activeHeroTab].tag}</span>
-                </div>
-
-                {/* Carousel Controls Overlay (Prev, Play/Pause, Next) */}
-                <div className="absolute top-3 right-3 flex items-center gap-1 bg-slate-900/80 backdrop-blur-md p-1 rounded-lg border border-slate-700/80 text-white z-10">
-                  <button
-                    onClick={handlePrev}
-                    aria-label="Previous showcase"
-                    className="p-1 rounded hover:bg-slate-800 transition-colors"
-                  >
-                    <ChevronLeft className="w-3.5 h-3.5" />
-                  </button>
-                  <button
-                    onClick={() => setIsAutoPlaying(!isAutoPlaying)}
-                    aria-label={isAutoPlaying ? "Pause carousel" : "Play carousel"}
-                    className="p-1 rounded hover:bg-slate-800 transition-colors text-solar-400"
-                  >
-                    {isAutoPlaying ? <Pause className="w-3 h-3" /> : <Play className="w-3 h-3" />}
-                  </button>
-                  <button
-                    onClick={handleNext}
-                    aria-label="Next showcase"
-                    className="p-1 rounded hover:bg-slate-800 transition-colors"
-                  >
-                    <ChevronRight className="w-3.5 h-3.5" />
-                  </button>
-                </div>
-
-                {/* Bottom Overlay Card (Clean, crisp, readable light-card) */}
-                <div className="absolute bottom-3 left-3 right-3 bg-white/95 backdrop-blur-md rounded-xl p-3 border border-white/60 shadow-lg text-slate-900">
-                  <div className="flex items-center justify-between text-[11px]">
-                    <span className="font-mono text-slate-500 uppercase tracking-wider font-semibold">
-                      {heroShowcases[activeHeroTab].title}
-                    </span>
-                    <span className="font-bold text-emerald-700 text-xs">
-                      {heroShowcases[activeHeroTab].badge}
-                    </span>
-                  </div>
-                  <div className="mt-0.5 text-xs sm:text-sm font-semibold text-slate-900 line-clamp-1">
-                    {heroShowcases[activeHeroTab].highlight}
-                  </div>
-                </div>
-              </div>
-
-              {/* Interactive Showcase Switcher Tabs */}
-              <div role="tablist" aria-label="Hero architectural showcases" className="grid grid-cols-4 gap-1.5 pt-0.5 w-full">
-                {heroShowcases.map((item, idx) => (
-                  <button
-                    key={idx}
-                    type="button"
-                    role="tab"
-                    aria-selected={activeHeroTab === idx}
-                    onClick={() => setActiveHeroTab(idx)}
-                    className={`relative p-1.5 rounded-xl text-left border transition-all text-xs min-w-0 ${
-                      activeHeroTab === idx
-                        ? 'bg-white border-solar-500 shadow-xs ring-1 ring-solar-500/40 text-slate-950 font-bold'
-                        : 'bg-white/80 hover:bg-white border-stone-200/80 text-slate-500'
-                    }`}
-                  >
-                    <span className="font-mono text-[9px] text-solar-700 font-bold block">0{idx + 1}</span>
-                    <span className="font-semibold text-[10px] sm:text-[11px] block truncate leading-tight mt-0.5">
-                      {item.title.split(' ')[0]}
-                    </span>
-                  </button>
-                ))}
-              </div>
-
-              {/* Prominent Clean Energy Innovation Card with Iconic Photovoltaic Bulb */}
-              <div className="w-full bg-gradient-to-r from-white via-amber-50/40 to-white rounded-2xl p-3 sm:p-3.5 border border-solar-200/90 shadow-sm flex items-center justify-between gap-3 overflow-hidden">
-                <div className="flex items-center gap-3 min-w-0 flex-1">
-                  <div className="relative shrink-0">
-                    <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-amber-100/80 via-white to-solar-100/60 border border-solar-300 p-1 flex items-center justify-center shadow-xs">
-                      <motion.img
-                        src="/assets/solar_bulb_innovation.png"
-                        alt="Meghvi Solar Clean Energy Photovoltaic Innovation Bulb"
-                        className="w-full h-full object-contain filter drop-shadow-xs"
-                        animate={{ scale: [1, 1.05, 1], rotate: [0, 2, -2, 0] }}
-                        transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
-                      />
-                    </div>
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <div className="flex items-center gap-1.5 mb-0.5">
-                      <span className="text-[9px] font-mono uppercase tracking-wider text-solar-700 font-bold bg-solar-50 px-1.5 py-0.5 rounded border border-solar-200 shrink-0">
-                        Patented Clean Tech
-                      </span>
-                      <span className="text-[9px] font-mono text-emerald-700 font-semibold truncate">
-                        Zero Carbon
-                      </span>
-                    </div>
-                    <span className="text-xs sm:text-sm font-bold text-slate-900 block truncate">
-                      Photovoltaic Solar Innovation
-                    </span>
-                    <p className="text-[11px] text-slate-500 font-sans hidden sm:block truncate">
-                      Convert pure Telangana sunlight into ₹0 monthly electricity bills.
-                    </p>
-                  </div>
-                </div>
-                <a
-                  href="#consultation-form"
-                  className="btn-amber text-xs py-2 px-3 rounded-xl font-bold shrink-0 inline-flex items-center gap-1 whitespace-nowrap shadow-xs"
-                >
-                  <span>Explore</span>
-                  <ChevronRight className="w-3.5 h-3.5" />
-                </a>
-              </div>
-
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shrink-0" />
+              <span>HYDERABAD & TELANGANA TIER-1 SOLAR EPC</span>
+              <span className="text-stone-300 hidden sm:inline">•</span>
+              <span className="text-solar-700 hidden sm:inline">MNRE ACCREDITED</span>
             </motion.div>
 
-          </div>
+            {/* Attention-Grabbing Hero Headline with Smooth Dynamic Rotating Word */}
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-slate-950 tracking-tight leading-[1.08] text-balance mb-6">
+              Energy, engineered <br />
+              <span className="inline-block relative h-[1.25em] align-top overflow-hidden">
+                <AnimatePresence mode="wait">
+                  <motion.span
+                    key={activeWordIndex}
+                    initial={{ opacity: 0, y: 32, filter: "blur(6px)" }}
+                    animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                    exit={{ opacity: 0, y: -32, filter: "blur(6px)" }}
+                    transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                    className="inline-block bg-gradient-to-r from-amber-500 via-solar-600 to-amber-700 bg-clip-text text-transparent underline decoration-solar-400/30 decoration-wavy decoration-2 underline-offset-8"
+                  >
+                    {rotatingWords[activeWordIndex]}
+                  </motion.span>
+                </AnimatePresence>
+              </span>
+            </h1>
+
+            {/* Clear, High-Calm Subtitle */}
+            <p className="text-slate-800 text-base sm:text-lg lg:text-xl font-medium max-w-2xl mx-auto leading-relaxed text-pretty drop-shadow-2xs mb-8">
+              Turnkey rooftop solar EPC for discerning residences, gated societies, and commercial enterprises. Slash power bills by up to 90% with Tier-1 TOPCon photovoltaics and guaranteed DISCOM net-metering.
+            </p>
+
+            {/* Verified Key Trust Badges */}
+            <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 mb-8 text-xs font-mono font-bold text-slate-800">
+              <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/90 border border-stone-300 shadow-2xs">
+                <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
+                <span>₹78,000 PM Surya Ghar Subsidy</span>
+              </div>
+              <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/90 border border-stone-300 shadow-2xs">
+                <Clock className="w-4 h-4 text-solar-600 shrink-0" />
+                <span>30-Year Linear Warranty</span>
+              </div>
+              <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/90 border border-stone-300 shadow-2xs">
+                <Activity className="w-4 h-4 text-indigo-600 shrink-0" />
+                <span>5-Year Comprehensive O&M</span>
+              </div>
+            </div>
+
+            {/* Centered Primary CTAs */}
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 w-full max-w-md mx-auto mb-10 sm:mb-12">
+              <motion.a
+                whileHover={{ scale: 1.03, y: -2 }}
+                whileTap={{ scale: 0.98 }}
+                href="#proposal-studio"
+                className="w-full sm:w-auto btn-amber text-sm py-3.5 px-8 font-bold flex items-center justify-center gap-2.5 shadow-amber-glow"
+              >
+                <span>Instant Solar Proposal</span>
+                <ArrowRight className="w-4 h-4" />
+              </motion.a>
+
+              <motion.a
+                whileHover={{ scale: 1.03, y: -2 }}
+                whileTap={{ scale: 0.98 }}
+                href="#consultation-form"
+                className="w-full sm:w-auto text-sm py-3.5 px-7 font-bold flex items-center justify-center gap-2 bg-white/95 text-slate-900 border border-stone-300 rounded-xl hover:bg-white hover:border-slate-400 shadow-2xs transition-all"
+              >
+                <span>Book Free Roof Survey</span>
+              </motion.a>
+            </div>
+
+            {/* Bottom Trust Metric Counters */}
+            <div className="pt-6 sm:pt-8 border-t border-stone-300/70 grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-8 max-w-3xl mx-auto w-full">
+              <div className="p-2 sm:p-0">
+                <span className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 font-mono block tabular-nums">
+                  500+
+                </span>
+                <span className="text-xs text-slate-600 font-medium mt-0.5 block">
+                  Installations Delivered
+                </span>
+              </div>
+              <div className="p-2 sm:p-0">
+                <span className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-emerald-700 font-mono block tabular-nums">
+                  ₹78k
+                </span>
+                <span className="text-xs text-slate-600 font-medium mt-0.5 block">
+                  Max Central Subsidy
+                </span>
+              </div>
+              <div className="p-2 sm:p-0">
+                <span className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-solar-600 font-mono block tabular-nums">
+                  100%
+                </span>
+                <span className="text-xs text-slate-600 font-medium mt-0.5 block">
+                  DISCOM Net-Metered
+                </span>
+              </div>
+              <div className="p-2 sm:p-0">
+                <span className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 font-mono block tabular-nums">
+                  30 Yrs
+                </span>
+                <span className="text-xs text-slate-600 font-medium mt-0.5 block">
+                  Performance Warranty
+                </span>
+              </div>
+            </div>
+
+            {/* Subtle Scroll Hint */}
+            <motion.div
+              animate={{ y: [0, 6, 0] }}
+              transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
+              className="hidden sm:flex flex-col items-center gap-1 text-stone-400 text-[11px] font-mono mt-8"
+            >
+              <span>Scroll to explore</span>
+              <ChevronDown className="w-3.5 h-3.5 text-stone-400" />
+            </motion.div>
+
+          </motion.div>
 
         </div>
       </section>
