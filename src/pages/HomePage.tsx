@@ -8,9 +8,9 @@ import { ProjectShowcase } from '../components/ProjectShowcase';
 import { ScrollReveal, StaggerContainer, StaggerItem } from '../components/motion/MotionWrapper';
 import { FAQ_ITEMS, COMPANY_DETAILS } from '../data/solarData';
 import { 
-  Sun, ShieldCheck, Zap, ArrowRight, CheckCircle2,
+  Sun, ShieldCheck, Zap, ArrowRight, CheckCircle2, ChevronRight, ChevronLeft,
   Layers, Cpu, Activity, Clock, FileCheck2, Building2, Home, Users,
-  Sparkles, Check, ChevronDown, Radio, BarChart3, Gauge
+  Sparkles, Check, ChevronDown, Radio, BarChart3, Gauge, Play, Pause
 } from 'lucide-react';
 
 interface Props {
@@ -18,7 +18,7 @@ interface Props {
 }
 
 export const HomePage: React.FC<Props> = ({ onNavigate }) => {
-  // Rotating dynamic headline phrases for elegant, attention-grabbing animation
+  // Rotating dynamic headline phrases for attention-grabbing hero animation
   const rotatingWords = [
     "beautifully.",
     "for ₹0 bills.",
@@ -28,13 +28,35 @@ export const HomePage: React.FC<Props> = ({ onNavigate }) => {
   ];
   const [activeWordIndex, setActiveWordIndex] = useState<number>(0);
 
-  // Subtle ambient background carousel
-  const heroBackgrounds = [
-    "/assets/luxury_hyderabad_solar_villa.jpg",
-    "/assets/install-solar-power-at-home-1024x683-1.jpg",
-    "/assets/commercial_industrial_solar_rooftop.jpg"
+  // Full-bleed vivid background carousel showcases
+  const heroShowcases = [
+    {
+      title: "Jubilee Hills Luxury Villa",
+      tag: "Residential EPC • 15 kW",
+      image: "/assets/luxury_hyderabad_solar_villa.jpg",
+      highlight: "All-Black TOPCon Cells with Zero-Glare Architectural Pergola"
+    },
+    {
+      title: "Hyderabad Residential Rooftop",
+      tag: "Turnkey Net-Metered • 8 kW",
+      image: "/assets/install-solar-power-at-home-1024x683-1.jpg",
+      highlight: "Hot-Dip Galvanized Structure Retaining Full Terrace Usability"
+    },
+    {
+      title: "Industrial & Commercial Facility",
+      tag: "Megawatt Scale • 350 kW",
+      image: "/assets/commercial_industrial_solar_rooftop.jpg",
+      highlight: "Trapezoidal Aluminum Anodized Mounts with HT Inverter Sync"
+    },
+    {
+      title: "Hybrid Telemetry & Storage",
+      tag: "BESS Storage • 15 kWh",
+      image: "/assets/smart_inverter_battery_storage.jpg",
+      highlight: "Modular Lithium-Ion BESS with Real-Time Mobile Cloud Diagnostics"
+    }
   ];
-  const [activeBgIndex, setActiveBgIndex] = useState<number>(0);
+  const [activeSlide, setActiveSlide] = useState<number>(0);
+  const [isCarouselPlaying, setIsCarouselPlaying] = useState<boolean>(true);
 
   // Cycle rotating animated headline text
   useEffect(() => {
@@ -44,39 +66,48 @@ export const HomePage: React.FC<Props> = ({ onNavigate }) => {
     return () => clearInterval(wordInterval);
   }, [rotatingWords.length]);
 
-  // Subtle slow ambient background crossfade
+  // Auto-cycle through full-bleed background carousel showcases
   useEffect(() => {
-    const bgInterval = setInterval(() => {
-      setActiveBgIndex((prev) => (prev + 1) % heroBackgrounds.length);
-    }, 7000);
-    return () => clearInterval(bgInterval);
-  }, [heroBackgrounds.length]);
+    if (!isCarouselPlaying) return;
+    const interval = setInterval(() => {
+      setActiveSlide((prev) => (prev + 1) % heroShowcases.length);
+    }, 5500);
+    return () => clearInterval(interval);
+  }, [isCarouselPlaying, activeSlide, heroShowcases.length]);
+
+  const handlePrevSlide = () => {
+    setActiveSlide((prev) => (prev - 1 + heroShowcases.length) % heroShowcases.length);
+  };
+
+  const handleNextSlide = () => {
+    setActiveSlide((prev) => (prev + 1) % heroShowcases.length);
+  };
 
   return (
     <div className="space-y-0 overflow-x-clip">
       
-      {/* HERO SECTION: SIMPLE, ELEGANT, 100VH IMMERSIVE WITH ATTENTION-GRABBING TEXT ANIMATION */}
+      {/* HERO SECTION: SIMPLE, ELEGANT, 100VH IMMERSIVE WITH HIGH-OPACITY CAROUSEL & SQUARED ARCHITECTURAL DESIGN */}
       <section 
         className="relative min-h-[100dvh] flex flex-col justify-center items-center py-16 sm:py-20 lg:py-24 overflow-hidden bg-ivory-50 border-b border-stone-200/80"
       >
-        {/* Full-Bleed Ambient Architectural Background with Soft Vignette */}
+        {/* Full-Bleed Vivid Background Carousel - Full Clarity & Contrast (No Pale Washout) */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
           <AnimatePresence mode="wait">
             <motion.img
-              key={activeBgIndex}
-              src={heroBackgrounds[activeBgIndex]}
-              alt="Meghvi Solar Architectural Rooftop"
-              initial={{ opacity: 0, scale: 1.04 }}
-              animate={{ opacity: 0.18, scale: 1 }}
+              key={activeSlide}
+              src={heroShowcases[activeSlide].image}
+              alt={heroShowcases[activeSlide].title}
+              initial={{ opacity: 0, scale: 1.02 }}
+              animate={{ opacity: 0.95, scale: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 1.2, ease: "easeOut" }}
-              className="w-full h-full object-cover object-center filter contrast-105"
+              transition={{ duration: 0.7, ease: "easeOut" }}
+              className="w-full h-full object-cover object-center filter contrast-105 saturate-110"
             />
           </AnimatePresence>
-          {/* Ambient Lighting & Soft Edge Vignettes for Ultra-Crisp Text Contrast */}
-          <div className="absolute inset-0 bg-ivory-50/70 pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-t from-ivory-50 via-transparent to-ivory-50/80 pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-r from-ivory-50/90 via-transparent to-ivory-50/90 pointer-events-none" />
+          {/* Crisp Ambient Scrim - Light & Non-Destructive (Preserves Vivid Image Contrast) */}
+          <div className="absolute inset-0 bg-white/20 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-ivory-50 via-transparent to-slate-950/15 pointer-events-none" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.78)_0%,rgba(255,255,255,0.32)_58%,transparent_100%)] pointer-events-none" />
         </div>
 
         {/* Centered High-Focus Content Container */}
@@ -88,21 +119,20 @@ export const HomePage: React.FC<Props> = ({ onNavigate }) => {
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             className="flex flex-col items-center w-full"
           >
-            {/* Top Eyebrow Pill */}
+            {/* Top Eyebrow Badge - Squared, Architectural & Technical (No Pulsing Dot) */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/95 border border-stone-300 text-slate-900 text-xs font-mono font-bold shadow-xs mb-6 sm:mb-8"
+              className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-none bg-white/95 border border-slate-900 text-slate-950 text-xs font-mono font-extrabold shadow-xs mb-6 sm:mb-8 uppercase tracking-wider"
             >
-              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shrink-0" />
               <span>HYDERABAD & TELANGANA TIER-1 SOLAR EPC</span>
-              <span className="text-stone-300 hidden sm:inline">•</span>
-              <span className="text-solar-700 hidden sm:inline">MNRE ACCREDITED</span>
+              <span className="text-stone-300">•</span>
+              <span className="text-solar-600 font-black">MNRE ACCREDITED</span>
             </motion.div>
 
             {/* Attention-Grabbing Hero Headline with Smooth Dynamic Rotating Word */}
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-slate-950 tracking-tight leading-[1.08] text-balance mb-6">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-slate-950 tracking-tight leading-[1.08] text-balance mb-6 drop-shadow-[0_2px_4px_rgba(255,255,255,0.95)]">
               Energy, engineered <br />
               <span className="inline-block relative h-[1.25em] align-top overflow-hidden">
                 <AnimatePresence mode="wait">
@@ -112,7 +142,7 @@ export const HomePage: React.FC<Props> = ({ onNavigate }) => {
                     animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                     exit={{ opacity: 0, y: -32, filter: "blur(6px)" }}
                     transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-                    className="inline-block bg-gradient-to-r from-amber-500 via-solar-600 to-amber-700 bg-clip-text text-transparent underline decoration-solar-400/30 decoration-wavy decoration-2 underline-offset-8"
+                    className="inline-block bg-gradient-to-r from-amber-600 via-solar-600 to-amber-700 bg-clip-text text-transparent underline decoration-solar-400/40 decoration-wavy decoration-2 underline-offset-8"
                   >
                     {rotatingWords[activeWordIndex]}
                   </motion.span>
@@ -121,43 +151,43 @@ export const HomePage: React.FC<Props> = ({ onNavigate }) => {
             </h1>
 
             {/* Clear, High-Calm Subtitle */}
-            <p className="text-slate-800 text-base sm:text-lg lg:text-xl font-medium max-w-2xl mx-auto leading-relaxed text-pretty drop-shadow-2xs mb-8">
+            <p className="text-slate-950 text-base sm:text-lg lg:text-xl font-bold max-w-2xl mx-auto leading-relaxed text-pretty drop-shadow-[0_1px_2px_rgba(255,255,255,0.95)] mb-8">
               Turnkey rooftop solar EPC for discerning residences, gated societies, and commercial enterprises. Slash power bills by up to 90% with Tier-1 TOPCon photovoltaics and guaranteed DISCOM net-metering.
             </p>
 
-            {/* Verified Key Trust Badges */}
-            <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 mb-8 text-xs font-mono font-bold text-slate-800">
-              <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/90 border border-stone-300 shadow-2xs">
+            {/* Verified Key Trust Badges - Crisp Architectural Squared Framing */}
+            <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 mb-8 text-xs font-mono font-bold text-slate-950">
+              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-none bg-white/95 border border-stone-300 shadow-2xs">
                 <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
                 <span>₹78,000 PM Surya Ghar Subsidy</span>
               </div>
-              <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/90 border border-stone-300 shadow-2xs">
+              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-none bg-white/95 border border-stone-300 shadow-2xs">
                 <Clock className="w-4 h-4 text-solar-600 shrink-0" />
                 <span>30-Year Linear Warranty</span>
               </div>
-              <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/90 border border-stone-300 shadow-2xs">
+              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-none bg-white/95 border border-stone-300 shadow-2xs">
                 <Activity className="w-4 h-4 text-indigo-600 shrink-0" />
                 <span>5-Year Comprehensive O&M</span>
               </div>
             </div>
 
-            {/* Centered Primary CTAs */}
+            {/* Centered Primary CTAs - Sharp Squared Architectural Actions */}
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 w-full max-w-md mx-auto mb-10 sm:mb-12">
               <motion.a
-                whileHover={{ scale: 1.03, y: -2 }}
+                whileHover={{ scale: 1.02, y: -1 }}
                 whileTap={{ scale: 0.98 }}
                 href="#proposal-studio"
-                className="w-full sm:w-auto btn-amber text-sm py-3.5 px-8 font-bold flex items-center justify-center gap-2.5 shadow-amber-glow"
+                className="w-full sm:w-auto btn-amber text-sm py-3.5 px-8 font-bold rounded-none flex items-center justify-center gap-2.5 shadow-amber-glow"
               >
                 <span>Instant Solar Proposal</span>
                 <ArrowRight className="w-4 h-4" />
               </motion.a>
 
               <motion.a
-                whileHover={{ scale: 1.03, y: -2 }}
+                whileHover={{ scale: 1.02, y: -1 }}
                 whileTap={{ scale: 0.98 }}
                 href="#consultation-form"
-                className="w-full sm:w-auto text-sm py-3.5 px-7 font-bold flex items-center justify-center gap-2 bg-white/95 text-slate-900 border border-stone-300 rounded-xl hover:bg-white hover:border-slate-400 shadow-2xs transition-all"
+                className="w-full sm:w-auto text-sm py-3.5 px-7 font-bold rounded-none flex items-center justify-center gap-2 bg-white/95 text-slate-900 border border-slate-900 hover:bg-slate-900 hover:text-white shadow-2xs transition-all"
               >
                 <span>Book Free Roof Survey</span>
               </motion.a>
@@ -169,7 +199,7 @@ export const HomePage: React.FC<Props> = ({ onNavigate }) => {
                 <span className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 font-mono block tabular-nums">
                   500+
                 </span>
-                <span className="text-xs text-slate-600 font-medium mt-0.5 block">
+                <span className="text-xs text-slate-700 font-semibold mt-0.5 block">
                   Installations Delivered
                 </span>
               </div>
@@ -177,7 +207,7 @@ export const HomePage: React.FC<Props> = ({ onNavigate }) => {
                 <span className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-emerald-700 font-mono block tabular-nums">
                   ₹78k
                 </span>
-                <span className="text-xs text-slate-600 font-medium mt-0.5 block">
+                <span className="text-xs text-slate-700 font-semibold mt-0.5 block">
                   Max Central Subsidy
                 </span>
               </div>
@@ -185,7 +215,7 @@ export const HomePage: React.FC<Props> = ({ onNavigate }) => {
                 <span className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-solar-600 font-mono block tabular-nums">
                   100%
                 </span>
-                <span className="text-xs text-slate-600 font-medium mt-0.5 block">
+                <span className="text-xs text-slate-700 font-semibold mt-0.5 block">
                   DISCOM Net-Metered
                 </span>
               </div>
@@ -193,17 +223,73 @@ export const HomePage: React.FC<Props> = ({ onNavigate }) => {
                 <span className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 font-mono block tabular-nums">
                   30 Yrs
                 </span>
-                <span className="text-xs text-slate-600 font-medium mt-0.5 block">
+                <span className="text-xs text-slate-700 font-semibold mt-0.5 block">
                   Performance Warranty
                 </span>
               </div>
             </div>
 
+            {/* Minimalist Background Carousel Controller & Project Identifier - Squared Architectural */}
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-3 w-full max-w-3xl mx-auto pt-6 mt-6 border-t border-stone-400/50 z-20">
+              {/* Active Project Info (No Pulsing Dot, Crisp Squared Label) */}
+              <div className="flex items-center gap-2.5 text-xs font-mono text-slate-900 bg-white/90 px-3 py-1 rounded-none border border-stone-300 shadow-2xs">
+                <span className="font-extrabold text-solar-700">0{activeSlide + 1} / 0{heroShowcases.length}</span>
+                <span className="text-stone-300">•</span>
+                <span className="font-bold text-slate-950">{heroShowcases[activeSlide].title}</span>
+                <span className="text-stone-300 hidden sm:inline">•</span>
+                <span className="text-slate-600 hidden sm:inline">{heroShowcases[activeSlide].tag}</span>
+              </div>
+
+              {/* Carousel Indicators & Controls - Squared */}
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={handlePrevSlide}
+                  aria-label="Previous background showcase"
+                  className="p-1.5 rounded-none bg-white/95 hover:bg-white text-slate-800 hover:text-slate-950 border border-stone-300 shadow-xs transition-colors"
+                >
+                  <ChevronLeft className="w-3.5 h-3.5" />
+                </button>
+                
+                <div className="flex items-center gap-1.5 px-1.5">
+                  {heroShowcases.map((_, idx) => (
+                    <button
+                      key={idx}
+                      type="button"
+                      onClick={() => setActiveSlide(idx)}
+                      aria-label={`Go to showcase ${idx + 1}`}
+                      className={`h-2 rounded-none transition-all duration-300 ${
+                        activeSlide === idx ? 'w-6 bg-solar-600 shadow-xs' : 'w-2 bg-stone-300 hover:bg-stone-400'
+                      }`}
+                    />
+                  ))}
+                </div>
+
+                <button
+                  type="button"
+                  onClick={handleNextSlide}
+                  aria-label="Next background showcase"
+                  className="p-1.5 rounded-none bg-white/95 hover:bg-white text-slate-800 hover:text-slate-950 border border-stone-300 shadow-xs transition-colors"
+                >
+                  <ChevronRight className="w-3.5 h-3.5" />
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setIsCarouselPlaying(!isCarouselPlaying)}
+                  aria-label={isCarouselPlaying ? "Pause carousel" : "Play carousel"}
+                  className="p-1.5 rounded-none bg-white/95 hover:bg-white text-solar-700 border border-stone-300 shadow-xs transition-colors ml-0.5"
+                >
+                  {isCarouselPlaying ? <Pause className="w-3 h-3" /> : <Play className="w-3 h-3" />}
+                </button>
+              </div>
+            </div>
+
             {/* Subtle Scroll Hint */}
             <motion.div
-              animate={{ y: [0, 6, 0] }}
+              animate={{ y: [0, 5, 0] }}
               transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
-              className="hidden sm:flex flex-col items-center gap-1 text-stone-400 text-[11px] font-mono mt-8"
+              className="hidden sm:flex flex-col items-center gap-1 text-stone-400 text-[11px] font-mono mt-5"
             >
               <span>Scroll to explore</span>
               <ChevronDown className="w-3.5 h-3.5 text-stone-400" />
